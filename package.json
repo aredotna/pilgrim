@@ -1,0 +1,17 @@
+{
+  "name": "pilgrim",
+  "version": "0.0.1",
+  "description": "Bookmarklet x Web-crawler",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "bookmarklet",
+    "webcrawler",
+    "are.na",
+    "readability"
+  ],
+  "author": "Are.na",
+  "license": "MIT"
+}
