@@ -1,14 +1,28 @@
-import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
+import { default as React, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 class Explore extends React.Component {
   render() {
-    const { dispatch, abstract } = this.props
+    const { dispatch, abstract } = this.props;
+
     return (
       <div className='l-abstract'>
-        hello world. {abstract.title}
+        <header>
+          <strong>Pilgrim</strong>
+        </header>
+        <h2>{abstract.title}</h2>
+        <div className="ab__keywords">
+          <h6>{abstract.keywords}</h6>
+        </div>
+        <div className="ab__content" dangerouslySetInnerHTML={{__html: abstract.html}}></div>
+        <hr />
+        <ol>
+          {abstract.hrefs.map(function(href) {
+            return <li key={href}><a href={href}>{href}</a></li>;
+          })}
+        </ol>
       </div>
-    )
+    );
   }
 }
 
@@ -18,5 +32,4 @@ function mapStateToProps(state) {
   }
 }
 
-// https://github.com/rackt/react-redux/blob/master/docs/api.md#inject-dispatch-and-todos
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Explore);

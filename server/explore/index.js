@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import configureStore from '../../common/store/configure_store';
+import { isURL } from 'validator';
 import Explore from './explore.js';
 import render from '../render.js';
 import fetchAbstract from '../../common/api/abstract';
