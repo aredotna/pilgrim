@@ -3,6 +3,9 @@ normalize-css()
 
 @require './variables.styl'
 
+html, body
+  font-family "Garamond"
+
 #root
   width 800px
   margin (unit * 4) auto
@@ -33,24 +36,3 @@ hr
 
 ol
   ol()
-
-header
-  display none
-  text-align center
-
-  strong
-    font-size 10px
-    text-transform uppercase
-
-.ab__content
-  max-height 190px
-  overflow hidden
-
-.ab__keywords
-  background-color #eee
-  padding 5px 10px
-  margin-bottom unit
-
-  h6
-    font-size 12px
-    font-weight normal

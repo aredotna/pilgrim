@@ -8,7 +8,8 @@
     "npm": "3.x.x"
   },
   "scripts": {
-    "start": "foreman start --procfile Procfile.dev",
+    "start": "nf run node server/index.js",
+    "dev": "foreman start --procfile Procfile.dev",
     "test": "npm test"
   },
   "keywords": [
