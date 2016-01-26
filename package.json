@@ -10,6 +10,8 @@
   "scripts": {
     "start": "nf run node server/index.js",
     "dev": "foreman start --procfile Procfile.dev",
+    "build-server": "webpack --config webpack.server.config.js --progress --colors -p",
+    "build-assets": "webpack --config webpack.production.config.js --progress --colors -p",
     "test": "npm test"
   },
   "keywords": [
@@ -54,7 +56,8 @@
     "stylus-loader": "^1.4.2",
     "superagent": "^1.6.1",
     "underscore.string": "^3.2.2",
-    "validator": "^4.4.0"
+    "validator": "^4.4.0",
+    "webpack-sources": "^0.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
@@ -68,8 +71,9 @@
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.11.3",
     "faker": "^3.0.1",
+    "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
-    "react-addons-test-utils": "^0.14.5",
+    "react-addons-test-utils": "^0.14.6",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "1.0.0",
     "redbox-react": "^1.2.0",
