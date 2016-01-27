@@ -61,7 +61,10 @@
     "underscore.string": "^3.2.2",
     "validator": "^4.4.0",
     "webpack-sources": "^0.1.0",
-    "webpack": "^1.11.0"
+    "webpack": "^1.11.0",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.2.0",
+    "webpack-notifier": "^1.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",

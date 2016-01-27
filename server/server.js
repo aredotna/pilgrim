@@ -10,14 +10,13 @@ import compression from 'compression';
 const { PORT, NODE_ENV } = process.env;
 const app = express();
 
-import webpack from 'webpack';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackDevelopmentConfig from '../webpack.development.config';
-
-const compiler = webpack(webpackDevelopmentConfig);
-
 if (NODE_ENV !== 'production') {
+  import webpackHotMiddleware from 'webpack-hot-middleware';
+  import webpackDevMiddleware from 'webpack-dev-middleware';
+  import webpackDevelopmentConfig from '../webpack.development.config';
+  import webpack from 'webpack';
+
+  const compiler = webpack(webpackDevelopmentConfig);
   app
     .use(webpackDevMiddleware(compiler, {
       noInfo: true,
