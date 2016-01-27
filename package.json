@@ -10,7 +10,7 @@
   "scripts": {
     "start": "nf run node server/index.js",
     "dev": "foreman start --procfile Procfile.dev",
-    "start-server":  "npm run build-assets && npm run build-server && nf run node build/server.js",
+    "start-server":  "nf run node build/server.js",
     "build-server": "webpack --config webpack.server.config.js --progress --colors -p",
     "build-assets": "webpack --config webpack.production.config.js --progress --colors -p",
     "test": "npm test"
