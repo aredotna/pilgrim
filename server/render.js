@@ -10,7 +10,7 @@ export default (html, initialState) =>  {
     <html>
       <head>
         <title>Pilgrim by Are.na</title>
-        <link href=""${assets.main.css}" rel="stylesheet" type="text/css"/>
+        <link href="${assets.main.css}" rel="stylesheet" type="text/css"/>
       </head>
       <body>
         <div id="root">${html}</div>
