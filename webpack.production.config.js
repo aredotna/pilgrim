@@ -3,7 +3,6 @@ const config = require('./webpack.common.config');
 const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const AssetsPlugin = require('assets-webpack-plugin');
 
 const assetPath = path.join(__dirname, 'public');
 
@@ -16,7 +15,6 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new AssetsPlugin({ filename: 'build/assets.json' }),
     new CleanPlugin([assetPath]),
     new ExtractTextPlugin('[name].[chunkhash].css', {
       allChunks: true,
@@ -28,7 +26,7 @@ module.exports = {
         warnings: false,
       },
     }),
-  ],
+  ].concat(config.plugins),
   module: {
     loaders: config.module.loaders,
   },
