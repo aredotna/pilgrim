@@ -4,6 +4,7 @@ import path from 'path';
 
 export default (html, initialState) =>  {
   const assets = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets.json'), 'utf8'));
+  console.log('assets', assets);
   return `
     <!doctype html>
     <html>
