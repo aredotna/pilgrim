@@ -2,6 +2,8 @@ import { default as React, PropTypes } from 'react';
 import { shuffle, take } from 'lodash';
 import { connect } from 'react-redux';
 
+const { APP_URL } = process.env;
+
 class Explore extends React.Component {
   render() {
     const { dispatch, abstract } = this.props;
@@ -20,7 +22,8 @@ class Explore extends React.Component {
         <hr />
         <ol>
           {abstract.hrefs.map(function(href) {
-            return <li key={href}><a href={href}>{href}</a></li>;
+            let url = `/${encodeURIComponent(href)}`;
+            return <li key={href}><a href={url}>{href}</a></li>;
           })}
         </ol>
       </div>
