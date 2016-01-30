@@ -21,7 +21,8 @@ app.get('/:url', (req, res, next) => {
 
     // set initial state as fetched info
     let store = configureStore({
-      abstract: results
+      abstract: results,
+      url: url
     });
 
     // Render the component to a raw string
