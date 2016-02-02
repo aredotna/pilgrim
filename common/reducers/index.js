@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import abstract from './abstract';
+import rootLink from './rootLink';
+import links from './links';
 
 const rootReducer = combineReducers({
-  abstract
+  rootLink,
+  links
 });
 
 export default rootReducer;

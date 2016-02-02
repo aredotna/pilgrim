@@ -1,13 +1,15 @@
 import { default as React, PropTypes } from 'react';
 import { shuffle, take } from 'lodash';
+import { fetchAbstract } from '../../actions'
 import classNames from 'classnames';
 import './index.styl';
 
 export default class Link extends React.Component {
 
+
   render() {
-    let { href, abstract } = this.props;
-    let hasAbstract = abstract !== undefined;
+    let { link, links, dispatch, url } = this.props;
+    let hasAbstract = link !== undefined;
 
     const linkClasses = classNames({
       'linkAbstract': true,
@@ -15,12 +17,12 @@ export default class Link extends React.Component {
     });
 
     if(hasAbstract){
-      const content = abstract.text.match(/[^\.!\?]+[\.!\?]+/g);
-      const tags = take(shuffle(abstract.keywords.split(',')), 6);
+      const content = link.text.match(/[^\.!\?]+[\.!\?]+/g);
+      const tags = take(shuffle(link.keywords.split(',')), 6);
 
       return (
         <li className={linkClasses}>
-          <div className="ab-title">{abstract.title}</div>
+          <div className="ab-title">{link.title}</div>
           <div className="ab-content" dangerouslySetInnerHTML={{__html: content[0]}}></div>
           <div className="ab-keywords">
             {tags.map(function(tag) {
@@ -29,15 +31,16 @@ export default class Link extends React.Component {
           </div>
           <hr />
           <ul>
-            {abstract.hrefs.map(function(href) {
-              return (<Link key={href} href={href}/>);
+            {link.hrefs.map(function(url) {
+              let childLink = links[url];
+              return (<Link key={url} url={url} links={links} link={childLink} dispatch={dispatch}/>);
             })}
           </ul>
         </li>
       );
     }else{
       return (
-        <li>{href}</li>
+        <li onClick={() => dispatch(fetchAbstract(url))}>{url}</li>
       );
     }
   }

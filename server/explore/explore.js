@@ -6,11 +6,12 @@ const { APP_URL } = process.env;
 
 class Explore extends React.Component {
   render() {
-    const { dispatch, abstract, href } = this.props;
+    const { dispatch, rootLink, links } = this.props;
+    let link = links[rootLink];
 
     return (
       <ul className='l-abstract'>
-        <Link key={href} href={href} abstract={abstract} />
+        <Link key={rootLink} url={rootLink} link={link} links={links} dispatch={dispatch} />
       </ul>
     );
   }
@@ -18,8 +19,8 @@ class Explore extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    abstract: state.abstract,
-    href: state.href
+    rootLink: state.rootLink,
+    links: state.links
   }
 }
 

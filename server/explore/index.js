@@ -21,8 +21,10 @@ app.get('/:url', (req, res, next) => {
 
     // set initial state as fetched info
     let store = configureStore({
-      abstract: results,
-      url: url
+      rootLink: url,
+      links: {
+        [url]: results
+      }
     });
 
     // Render the component to a raw string
@@ -35,7 +37,7 @@ app.get('/:url', (req, res, next) => {
     // Render our boilerplate page with HTML and the initial state set
     res.send(render(html, store.getState()));
   }).catch( err => {
-    console.log('error here', err)
+    console.log('error here', err.stack)
     next()
   })
 })

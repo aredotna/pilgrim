@@ -12,7 +12,7 @@
     "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress --colors -p",
     "postinstall": "if [ -n \"$npm_config_production\" ]; then npm run build; fi",
     "dev": "foreman start --procfile Procfile.dev",
-    "start-server":  "nf run node build/server.js",
+    "start-server": "nf run node build/server.js",
     "build-server": "webpack --config webpack.server.config.js --progress --colors -p",
     "build-assets": "webpack --config webpack.production.config.js --progress --colors -p",
     "test": "npm test"
@@ -44,9 +44,11 @@
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.0",
     "foreman": "^1.4.1",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^3.10.1",
     "morgan": "^1.6.1",
     "nib": "^1.1.0",
+    "qs": "^6.0.2",
     "ramda": "^0.18.0",
     "react": "^0.14.5",
     "react-dom": "0.14.0",
@@ -60,11 +62,11 @@
     "superagent": "^1.6.1",
     "underscore.string": "^3.2.2",
     "validator": "^4.4.0",
-    "webpack-sources": "^0.1.0",
     "webpack": "^1.11.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.2.0",
-    "webpack-notifier": "^1.2.1"
+    "webpack-notifier": "^1.2.1",
+    "webpack-sources": "^0.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
