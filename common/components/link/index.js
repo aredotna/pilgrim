@@ -40,7 +40,7 @@ export default class Link extends React.Component {
       );
     }else{
       return (
-        <li onClick={() => dispatch(fetchAbstract(url))}>{url}</li>
+        <li className="childlink" onClick={() => dispatch(fetchAbstract(url))}>{url}</li>
       );
     }
   }
