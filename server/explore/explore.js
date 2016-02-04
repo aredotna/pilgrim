@@ -5,6 +5,7 @@ import Link from '../../common/components/link/index';
 const { APP_URL } = process.env;
 
 class Explore extends React.Component {
+
   render() {
     const { dispatch, rootLink, links } = this.props;
     let link = links[rootLink];

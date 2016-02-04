@@ -2,10 +2,8 @@ import { default as React, PropTypes } from 'react';
 import { shuffle, take } from 'lodash';
 import { fetchAbstract } from '../../actions'
 import classNames from 'classnames';
-import './index.styl';
 
 export default class Link extends React.Component {
-
 
   render() {
     let { link, links, dispatch, url } = this.props;
@@ -19,18 +17,23 @@ export default class Link extends React.Component {
     if(hasAbstract){
       const content = link.text.match(/[^\.!\?]+[\.!\?]+/g);
       const tags = take(shuffle(link.keywords.split(',')), 6);
+      let preview = '';
+
+      if(content !== undefined){
+        preview = content[0];
+      }
 
       return (
         <li className={linkClasses}>
           <div className="ab-title">{link.title}</div>
-          <div className="ab-content" dangerouslySetInnerHTML={{__html: content[0]}}></div>
+          <div className="ab-content" dangerouslySetInnerHTML={{__html: preview}}></div>
           <div className="ab-keywords">
             {tags.map(function(tag) {
               return <span className="ab-tag" key={tag}><a href={tag}>#{tag}</a></span>;
             })}
           </div>
-          <hr />
-          <ul>
+          <hr className="ab-divider"/>
+          <ul className="ab-links">
             {link.hrefs.map(function(url) {
               let childLink = links[url];
               return (<Link key={url} url={url} links={links} link={childLink} dispatch={dispatch}/>);

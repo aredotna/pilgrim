@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const pick = require('lodash').pick;
 const whitelist = require('./config/whitelist');
 const nib = require('nib');
+const axis = require('axis');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 
@@ -35,6 +36,6 @@ module.exports = {
     ],
   },
   stylus: {
-    use: [nib()],
+    use: [nib(), axis()],
   },
 };
