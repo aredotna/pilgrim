@@ -2,6 +2,7 @@ import { default as React, PropTypes } from 'react';
 import { shuffle, take } from 'lodash';
 import { connect } from 'react-redux';
 import { fetchAbstract } from '../../actions';
+import randomColor from 'randomcolor';
 import ConnectedLink from './connected_link';
 import classNames from 'classnames';
 
@@ -15,16 +16,17 @@ class Link extends React.Component {
     });
 
     if(link){
-      const content = link.text.match(/[^\.!\?]+[\.!\?]+/g);
+      const content = link.text.match(/[^\r\n]+/g);
       const tags = take(shuffle(link.keywords.split(',')), 6);
       let preview = '';
+      let borderColor = { borderColor: randomColor({ luminosity: 'light'}) };
 
       if(content !== undefined){
         preview = content[0];
       }
 
       return (
-        <li className={linkClasses}>
+        <li className={linkClasses} style={borderColor}>
           <div className="ab-title">{link.title}</div>
           <div className="ab-content" dangerouslySetInnerHTML={{__html: preview}}></div>
           <div className="ab-keywords">
