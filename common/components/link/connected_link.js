@@ -2,10 +2,10 @@ import { default as React, PropTypes } from 'react';
 import { shuffle, take } from 'lodash';
 import { connect } from 'react-redux';
 import { fetchAbstract } from '../../actions';
-import ConnectedLink from './connected_link';
+import Link from './index';
 import classNames from 'classnames';
 
-class Link extends React.Component {
+class ConnectedLink extends React.Component {
   render() {
     const { link, dispatch, url } = this.props;
 
@@ -32,7 +32,7 @@ class Link extends React.Component {
           </div>
           <hr className="ab-divider"/>
           <ul className="ab-links">
-            {link.hrefs.map( url => <ConnectedLink key={url} url={url} dispatch={dispatch} /> )}
+            {link.hrefs.map( url => <Link key={url} url={url} dispatch={dispatch} /> )}
           </ul>
         </li>
       );
@@ -45,10 +45,11 @@ class Link extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log('mapStateToProps', ownProps.url);
   return {
     link: state.links[ownProps.url],
   }
 }
 
-Link = connect(mapStateToProps)(Link);
-export default Link;
+ConnectedLink = connect(mapStateToProps)(ConnectedLink);
+export default ConnectedLink;

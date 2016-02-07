@@ -7,22 +7,13 @@ const { APP_URL } = process.env;
 class Explore extends React.Component {
 
   render() {
-    const { dispatch, rootLink, links } = this.props;
-    let link = links[rootLink];
-
+    const { rootLink } = this.props;
     return (
       <ul className='l-abstract'>
-        <Link key={rootLink} url={rootLink} link={link} links={links} dispatch={dispatch} />
+        <Link key={rootLink} url={rootLink} />
       </ul>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    rootLink: state.rootLink,
-    links: state.links
-  }
-}
-
-export default connect(mapStateToProps)(Explore);
+export default Explore;
