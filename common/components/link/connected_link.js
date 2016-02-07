@@ -16,7 +16,7 @@ class ConnectedLink extends React.Component {
     });
 
     if(link){
-      const content = link.text.match(/[^\.!\?]+[\.!\?]+/g);
+      const content = link.text.match(/[^\r\n]+/g);
       const tags = take(shuffle(link.keywords.split(',')), 6);
       let preview = '';
       let borderColor = { borderColor: randomColor({ luminosity: 'light'}) };
