@@ -27,7 +27,9 @@ class ConnectedLink extends React.Component {
 
       return (
         <li className={linkClasses} style={borderColor}>
-          <div className="ab-title">{link.title}</div>
+          <div className="ab-title">
+            <a href={url} target="_blank">{link.title}</a>
+          </div>
           <div className="ab-content" dangerouslySetInnerHTML={{__html: preview}}></div>
           <div className="ab-keywords">
             {tags.map( tag => <span className="ab-tag" key={tag}><a href={tag}>#{tag}</a></span> )}
