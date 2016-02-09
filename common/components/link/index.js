@@ -3,10 +3,9 @@ import { shuffle, take } from 'lodash';
 import { connect } from 'react-redux';
 import { fetchAbstract } from '../../actions';
 import randomColor from 'randomcolor';
-import ConnectedLink from './connected_link';
 import classNames from 'classnames';
 
-class Link extends React.Component {
+class Node extends React.Component {
   render() {
     const { link, dispatch, url } = this.props;
 
@@ -19,7 +18,7 @@ class Link extends React.Component {
       const content = link.text.match(/[^\r\n]+/g);
       const tags = take(shuffle(link.keywords.split(',')), 6);
       let preview = '';
-      let borderColor = { borderColor: randomColor({ luminosity: 'light'}) };
+      let borderColor = { borderColor: randomColor({ luminosity: 'light' }) };
 
       if(content !== undefined){
         preview = content[0];
@@ -36,7 +35,7 @@ class Link extends React.Component {
           </div>
           <hr className="ab-divider"/>
           <ul className="ab-links">
-            {link.hrefs.map( url => <ConnectedLink key={url} url={url} dispatch={dispatch} /> )}
+            {link.hrefs.map( url => <Link key={url} url={url} dispatch={dispatch} /> )}
           </ul>
         </li>
       );
@@ -54,5 +53,5 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-Link = connect(mapStateToProps)(Link);
+let Link = connect(mapStateToProps)(Node);
 export default Link;
