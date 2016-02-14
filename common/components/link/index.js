@@ -29,6 +29,9 @@ class Node extends React.Component {
           <div className="ab-title">
             <a href={url} target="_blank">{link.title}</a>
           </div>
+          <div className="ab-image">
+            <img src={link.top_image}/>
+          </div>
           <div className="ab-content" dangerouslySetInnerHTML={{__html: preview}}></div>
           <div className="ab-keywords">
             {tags.map( tag => <span className="ab-tag" key={tag}><a href={tag}>#{tag}</a></span> )}
