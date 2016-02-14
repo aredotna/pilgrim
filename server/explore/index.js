@@ -35,7 +35,7 @@ app.get('/:url', (req, res, next) => {
     );
 
     // Render our boilerplate page with HTML and the initial state set
-    res.send(render(html, store.getState()));
+    res.send(render(html, store.getState(), results.title));
   }).catch( err => {
     console.log('error here', err.stack)
     next()

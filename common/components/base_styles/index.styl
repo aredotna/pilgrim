@@ -3,8 +3,20 @@ normalize-css()
 
 @require './variables.styl'
 
+body-text()
+  font-family Georgia, Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+
+header-text()
+  font-family Georgia, Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+  font-weight 700
+
+small-text()
+  font-family Arial
+  font-size 14px
+  line-height 16px
+
 html, body
-  font-family "Arial"
+  body-text()
 
 #root
   width 800px

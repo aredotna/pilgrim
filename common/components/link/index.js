@@ -18,10 +18,10 @@ class Node extends React.Component {
       const content = link.text.match(/[^\r\n]+/g);
       const tags = take(shuffle(link.keywords.split(',')), 6);
       let preview = '';
-      let borderColor = { borderColor: randomColor({ luminosity: 'light' }) };
+      let borderColor = { borderColor: randomColor({ luminosity: 'bright' }) };
 
       if(content !== undefined){
-        preview = content[0];
+        preview = `<p>${content[0]}</p><p>${content[1]}</p>`;
       }
 
       return (

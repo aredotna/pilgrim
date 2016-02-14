@@ -2,13 +2,13 @@
 import fs from 'fs';
 import path from 'path';
 
-export default (html, initialState) =>  {
+export default (html, initialState, title = '') =>  {
   const assets = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets.json'), 'utf8'));
   return `
     <!doctype html>
     <html>
       <head>
-        <title>Pilgrim by Are.na</title>
+        <title>${title}</title>
         <link href="${assets.main.css}" rel="stylesheet" type="text/css"/>
       </head>
       <body>
