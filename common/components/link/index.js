@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { fetchAbstract } from '../../actions';
 import randomColor from 'randomcolor';
 import classNames from 'classnames';
+import { createSelector } from 'reselect';
 
 class Node extends React.Component {
   render() {
-    const { link, dispatch, url } = this.props;
+    const { link, onLinkClick, url } = this.props;
 
     const linkClasses = classNames({
       'linkAbstract': true,
@@ -38,23 +39,39 @@ class Node extends React.Component {
           </div>
           <hr className="ab-divider"/>
           <ul className="ab-links">
-            {link.hrefs.map( url => <Link key={url} url={url} dispatch={dispatch} /> )}
+            {link.hrefs.map( url => <Link key={url} url={url} /> )}
           </ul>
         </li>
       );
     }else{
       return (
-        <li className="childlink" onClick={() => dispatch(fetchAbstract(url))}>{url}</li>
+        <li className="childlink" onClick={() => onLinkClick(url)}>{url}</li>
       );
     }
   }
 }
 
-function mapStateToProps(state, ownProps) {
+const linksSelector = state => state.links;
+const urlSelector = (state, props) => props.url;
+
+const linkSelector = createSelector(
+  linksSelector,
+  urlSelector,
+  (links, url) => {
+    return {
+      link: links[url]
+    }
+  }
+);
+
+const mapDispatchToProps = (dispatch) => {
   return {
-    link: state.links[ownProps.url],
+    onLinkClick: (url) => {
+      console.log('onLinkClick', url);
+      dispatch(fetchAbstract(url))
+    }
   }
 }
 
-let Link = connect(mapStateToProps)(Node);
+let Link = connect(linkSelector, mapDispatchToProps)(Node);
 export default Link;
