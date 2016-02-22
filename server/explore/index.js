@@ -30,7 +30,7 @@ app.get('/:url', (req, res, next) => {
     // Render the component to a raw string
     const html = renderToStaticMarkup(
       <Provider store={store}>
-        <Explore rootLink={url} />
+        <Explore />
       </Provider>
     );
 

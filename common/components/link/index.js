@@ -16,14 +16,10 @@ class Node extends React.Component {
     });
 
     if(link){
-      const content = link.text.match(/[^\r\n]+/g);
+      const content = link.html;
       const tags = take(shuffle(link.keywords.split(',')), 6);
       let preview = '';
       let borderColor = { borderColor: randomColor({ luminosity: 'bright' }) };
-
-      if(content !== undefined){
-        preview = `<p>${content[0]}</p><p>${content[1]}</p>`;
-      }
 
       return (
         <li className={linkClasses} style={borderColor}>
@@ -33,19 +29,15 @@ class Node extends React.Component {
           <div className="ab-image">
             <img src={link.top_image}/>
           </div>
-          <div className="ab-content" dangerouslySetInnerHTML={{__html: preview}}></div>
+          <div className="ab-content" dangerouslySetInnerHTML={{__html: content}}></div>
           <div className="ab-keywords">
             {tags.map( tag => <span className="ab-tag" key={tag}><a href={tag}>#{tag}</a></span> )}
           </div>
           <hr className="ab-divider"/>
           <ul className="ab-links">
-            {link.hrefs.map( url => <Link key={url} url={url} /> )}
+            {link.hrefs.map( url => <li className="childlink" onClick={() => onLinkClick(url)}>{url}</li> )}
           </ul>
         </li>
-      );
-    }else{
-      return (
-        <li className="childlink" onClick={() => onLinkClick(url)}>{url}</li>
       );
     }
   }
@@ -67,7 +59,6 @@ const linkSelector = createSelector(
 const mapDispatchToProps = (dispatch) => {
   return {
     onLinkClick: (url) => {
-      console.log('onLinkClick', url);
       dispatch(fetchAbstract(url))
     }
   }
