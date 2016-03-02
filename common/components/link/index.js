@@ -1,12 +1,19 @@
-import { default as React, PropTypes } from 'react';
+import { default as React, PropTypes, } from 'react';
 import { shuffle, take } from 'lodash';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import { fetchAbstract } from '../../actions';
-import randomColor from 'randomcolor';
 import classNames from 'classnames';
 import { createSelector } from 'reselect';
 
 class Node extends React.Component {
+  componentDidMount(){
+    const { onLinkClick, url } = this.props;
+    $(findDOMNode(this)).on('click', 'a', function(e){
+      e.preventDefault();
+      onLinkClick($(e.currentTarget).attr('href'), url);
+    });
+  }
   render() {
     const { link, onLinkClick, url } = this.props;
 
@@ -16,27 +23,16 @@ class Node extends React.Component {
     });
 
     if(link){
-      const content = link.html;
+      const title = link.title.replace(' - Wikipedia, the free encyclopedia', '');
+      const content = link.html.replace('Advertisement', '').replace('From Wikipedia, the free encyclopedia', '');
       const tags = take(shuffle(link.keywords.split(',')), 6);
-      let preview = '';
-      let borderColor = { borderColor: randomColor({ luminosity: 'bright' }) };
 
       return (
-        <li className={linkClasses} style={borderColor}>
+        <li id={url} className={linkClasses}>
           <div className="ab-title">
-            <a href={url} target="_blank">{link.title}</a>
-          </div>
-          <div className="ab-image">
-            <img src={link.top_image}/>
+            <a href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
           </div>
           <div className="ab-content" dangerouslySetInnerHTML={{__html: content}}></div>
-          <div className="ab-keywords">
-            {tags.map( tag => <span className="ab-tag" key={tag}><a href={tag}>#{tag}</a></span> )}
-          </div>
-          <hr className="ab-divider"/>
-          <ul className="ab-links">
-            {link.hrefs.map( url => <li className="childlink" onClick={() => onLinkClick(url)}>{url}</li> )}
-          </ul>
         </li>
       );
     }
@@ -58,8 +54,8 @@ const linkSelector = createSelector(
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLinkClick: (url) => {
-      dispatch(fetchAbstract(url))
+    onLinkClick: (url, parent) => {
+      dispatch(fetchAbstract(url, parent))
     }
   }
 }

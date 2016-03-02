@@ -9,6 +9,7 @@ export default (html, initialState, title = '') =>  {
     <html>
       <head>
         <title>${title}</title>
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
         <link href="${assets.main.css}" rel="stylesheet" type="text/css"/>
       </head>
       <body>
@@ -16,6 +17,7 @@ export default (html, initialState, title = '') =>  {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="${assets.main.js}"></script>
       </body>
     </html>

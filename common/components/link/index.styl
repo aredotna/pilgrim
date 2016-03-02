@@ -1,32 +1,61 @@
+.l-abstract
+  clearfix()
+  margin 0
+  padding 0
+  position relative
+  max-height 100vh
+  overflow hidden
+
 .linkAbstract.is-expanded
-  margin-top unit
-  margin-bottom unit
-  border-left 3px solid #ddd
-  padding-left unit
-  margin-left unit
+  padding unit
   list-style-type none
   max-width 400px
   float left
+  height 100vh
+  overflow auto
+
+  &:hover
+    background #444
+    .ab-content, .ab-title a, .ab-content a
+      color #eee
 
 .ab-title
-  font-size 1.2rem
-  font-weight bold
-  padding unit 0 (unit / 2)
-
+  font-size 1.4rem
+  line-height 1.6rem
+  padding (unit * 2) 0 (unit)
+  text-align center
   a
     color black
     text-decoration none
-    border-bottom 1px solid transparent
   a:hover
-    border-bottom 1px solid #ccc
+    text-decoration underline
 
 .ab-content
   color light-text
   padding-bottom (unit / 2)
-  p(1.3rem)
+  p(1rem)
 
   p
-    font-size 1.2rem
+    font-size 1rem
+
+  img
+    max-width 100%
+    height auto
+
+  figure
+    margin 0
+
+  figcaption
+    background-color #eee
+    padding (unit/2)
+    p
+      font-size 0.7rem
+
+  h1, h2, h3, h4, h5
+    h4()
+
+  table
+    display none
 
 .ab-image
   img
@@ -57,6 +86,6 @@
 ul
   ul()
 
-.visually-hidden, .ad
+.visually-hidden, .ad, .hidden, .interactive
   display none
 

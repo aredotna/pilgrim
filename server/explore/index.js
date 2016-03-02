@@ -24,7 +24,8 @@ app.get('/:url', (req, res, next) => {
       rootLink: url,
       links: {
         [url]: results
-      }
+      },
+      path: [url]
     });
 
     // Render the component to a raw string

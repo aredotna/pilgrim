@@ -10,18 +10,20 @@ function requestAbstract(href) {
   }
 }
 
-function receiveAbstract(href, abstract) {
+function receiveAbstract(href, abstract, parent) {
   return {
     type: RECEIVE_ABSTRACT,
     href: href,
     abstract: abstract,
+    parent: parent
   }
 }
 
-export function fetchAbstract(href) {
+export function fetchAbstract(href, parent) {
+  console.log('fetchAbstract', href, parent);
   return dispatch => {
     dispatch(requestAbstract(href))
     return getAbstract(href)
-      .then(abstract => dispatch(receiveAbstract(href, abstract)))
+      .then(abstract => dispatch(receiveAbstract(href, abstract, parent)))
   }
 }

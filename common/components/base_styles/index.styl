@@ -4,11 +4,11 @@ normalize-css()
 @require './variables.styl'
 
 body-text()
-  font-family Georgia, Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+  font-family 'Lora', serif
 
 header-text()
-  font-family Georgia, Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
-  font-weight 700
+  font-family 'Lora', serif
+  font-weight normal
 
 small-text()
   font-family Arial
@@ -18,8 +18,8 @@ small-text()
 html, body
   body-text()
 
-#root
-  margin (unit * 4) auto
+  b, strong
+    font-weight 700
 
 h1
   h1()

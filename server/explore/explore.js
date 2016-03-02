@@ -8,10 +8,10 @@ const { APP_URL } = process.env;
 class Explore extends React.Component {
 
   render() {
-    const { links } = this.props;
+    const { path } = this.props;
     return (
       <ul className='l-abstract'>
-        {map(links, (value, url) => <Link key={url} url={url} /> )}
+        {map(path, (url) => <Link key={url} url={url} /> )}
       </ul>
     );
   }
@@ -20,7 +20,7 @@ class Explore extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    links: state.links
+    path: state.path
   }
 }
 
