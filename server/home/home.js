@@ -8,6 +8,9 @@ class Home extends React.Component {
 
     return (
       <div className='l-home'>
+        <p>
+          <strong>Drag the link below to your bookmarks bar</strong>
+        </p>
         <a href={snippet}>⇨ Pilgrimage</a>
       </div>
     );
