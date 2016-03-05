@@ -2,23 +2,27 @@
   clearfix()
   margin 0
   padding 0
-  position relative
-  max-height 100vh
-  overflow hidden
-  margin-top topbar-height
+  position absolute
+  top topbar-height
+  bottom 0
+  width 100%
+  overflow-x scroll
+  overflow-y hidden
+  white-space nowrap
 
 .linkAbstract.is-expanded
   padding unit
   list-style-type none
   max-width 400px
-  float left
-  height 100vh
+  display inline-block
+  height 100%
   overflow auto
+  white-space normal
 
 .ab-title
   font-size 1.4rem
   line-height 1.6rem
-  padding (unit * 2) 0 (unit)
+  padding (unit * 3) unit unit
   text-align center
   a
     color black
@@ -82,6 +86,6 @@
 ul
   ul()
 
-.visually-hidden, .ad, .hidden, .interactive
+.visually-hidden, .ad, .hidden, .interactive, iframe
   display none
 

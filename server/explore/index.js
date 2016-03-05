@@ -25,6 +25,7 @@ app.get('/:url', (req, res, next) => {
       links: {
         [url]: results
       },
+      preview_url: '',
       path: [url]
     });
 

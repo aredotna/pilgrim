@@ -6,8 +6,6 @@ export default (state = {}, action) => {
     case RECEIVE_ABSTRACT:
       let index = indexOf(state, action.parent);
       let chopped = slice(state, 0, index + 1);
-      console.log('chopped', chopped, 'index', index, 'parent', action.parent);
-
       return [
         ...chopped,
         action.href

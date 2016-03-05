@@ -16,8 +16,11 @@ small-text()
   line-height 16px
   text-transform uppercase
 
-html, body
+html, body, #root
   body-text()
+  height 100%
+  margin 0
+  padding 0
 
   b, strong
     font-weight 700
@@ -25,6 +28,18 @@ html, body
 .l-home
   text-align center
   margin-top 20%
+
+.l-explore
+  width 100%
+  height 100%
+  margin auto
+  position relative
+
+::-webkit-scrollbar
+  width 0px
+::-webkit-scrollbar-track-piece
+  background-color transparent
+  -webkit-border-radius 6px
 
 h1
   h1()

@@ -1,32 +1,33 @@
 import { default as React, PropTypes } from 'react';
 import { map } from 'lodash';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import stripTitle from '../../lib/strip_title';
+import linkSelector from '../../selectors/link'
 
-class Path extends React.Component {
+class PathItem extends React.Component {
+  componentDidMount(){
+    findDOMNode(this).scrollIntoView();
+  }
   render() {
-    const { path, links } = this.props;
+    const { link, onPathItemClick, url } = this.props;
     return (
-      <div className='path-list'>
-        {path.map(url =>
-          <div className="path-list__item" key={url}>
-            <div className="path-list__item__wrap" key={url}>
-              {stripTitle(links[url].title)}
-            </div>
-          </div>
-        )}
+      <div className="path-list__item" key={url}>
+        <div
+          className="path-list__item__wrap"
+          dangerouslySetInnerHTML={{__html: stripTitle(link.title)}} />
       </div>
     );
   }
 }
 
 
-function mapStateToProps(state) {
+const mapDispatchToProps = (dispatch) => {
   return {
-    path: state.path,
-    links: state.links
+    onPathItemClick: (url, parent) => {
+      dispatch(fetchAbstract(url, parent))
+    }
   }
 }
 
-Path = connect(mapStateToProps)(Path);
-export default Path;
+export default connect(linkSelector, mapDispatchToProps)(PathItem);
