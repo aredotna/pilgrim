@@ -20,7 +20,6 @@ class Explore extends React.Component {
         </div>
         <ul className='l-abstract'>
           {map(path, (url) => <Link key={url} url={url} /> )}
-
         </ul>
       </div>
     );
