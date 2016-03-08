@@ -30,6 +30,10 @@ module.exports = {
         include: __dirname,
       },
       {
+        test: /\.json$/,
+        loader: "json-loader"
+      },
+      {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader'),
       },

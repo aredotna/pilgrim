@@ -1,0 +1,35 @@
+.l-path
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height topbar-height
+  padding-left unit
+  border-bottom 2px solid #eee
+  background-color #fff
+  z-index 100
+  overflow-x scroll
+  overflow-y hidden
+  white-space nowrap
+
+.path-list
+  small-text()
+  line-height topbar-height
+  &__item
+    display inline-block
+    color disabled-text
+    &__wrap
+      display inline-block
+      max-width 300px
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
+      margin-right 5px
+    &:after
+      content '/'
+      vertical-align top
+      color disabled-text
+      margin-right 10px
+    &:last-child
+      font-weight bold
+      color black

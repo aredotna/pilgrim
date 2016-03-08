@@ -24,13 +24,15 @@ app.get('/:url', (req, res, next) => {
       rootLink: url,
       links: {
         [url]: results
-      }
+      },
+      preview_url: '',
+      path: [url]
     });
 
     // Render the component to a raw string
     const html = renderToStaticMarkup(
       <Provider store={store}>
-        <Explore rootLink={url} />
+        <Explore />
       </Provider>
     );
 
