@@ -1,4 +1,4 @@
-import getAbstract from '../api/abstract';
+import { fetchLocalAbstract } from '../api/abstract';
 import { map } from 'lodash';
 
 export const REQUEST_ABSTRACT = 'REQUEST_ABSTRACT';
@@ -57,7 +57,7 @@ export function preloadAbstractLinks(href) {
         let { link } = linkSelector(state, { url: href });
         if(!link){
           dispatch(requestAbstract(href))
-          getAbstract(href).then(abstract => {
+          fetchLocalAbstract(href).then(abstract => {
             dispatch(receiveAbstract(href, abstract))
           });
         }
@@ -74,7 +74,7 @@ export function fetchAbstract(href, parent) {
       return dispatch(selectAbstract(href, abstract.link, parent));
     } else {
       dispatch(requestAbstract(href))
-      return getAbstract(href)
+      return fetchLocalAbstract(href)
         .then(abstract => {
           dispatch(receiveAbstract(href, abstract))
           dispatch(selectAbstract(href, abstract, parent))

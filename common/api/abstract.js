@@ -4,7 +4,7 @@ import qs from 'qs';
 import { map, filter } from 'lodash';
 import url from 'url';
 
-let { ABSTRACT_ENDPOINT } = process.env;
+let { ABSTRACT_ENDPOINT, APP_URL } = process.env;
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -16,8 +16,22 @@ function checkStatus(response) {
   }
 }
 
-function parseJSON(response) {
+function parseJSON(response){
   return response.json()
+}
+
+export function fetchLocalAbstract(url){
+  return Q.promise((resolve, reject) => {
+    fetch(`${APP_URL}api/${encodeURIComponent(url)}`)
+      .then(checkStatus)
+      .then(parseJSON)
+      .then((data) => {
+        return resolve(data);
+      })
+      .catch((error) => {
+        return reject(error);
+      });
+  });
 }
 
 export default (url) => {
