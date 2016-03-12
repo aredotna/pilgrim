@@ -7,9 +7,6 @@ import classNames from 'classnames';
 import linkSelector from '../../selectors/link'
 
 class PreviewNode extends React.Component {
-  componentDidMount(){
-    findDOMNode(this).scrollIntoView();
-  }
   render() {
     const { link, onLinkClick, url } = this.props;
 
