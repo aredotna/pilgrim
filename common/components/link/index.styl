@@ -22,7 +22,7 @@
 .ab-title
   font-size 1.4rem
   line-height 1.6rem
-  padding (unit * 3) unit unit
+  padding unit
   text-align center
   a
     color black
@@ -89,6 +89,16 @@
 ul
   ul()
 
-.visually-hidden, .ad, .hidden, .interactive, iframe, .inline-icon, .u-h
+// overrides
+.visually-hidden,
+.ad,
+.hidden,
+.interactive,
+iframe,
+.inline-icon,
+.u-h,
+.synved-social-button
   display none
 
+.aspectRatioPlaceholder-fill
+  padding-bottom 0 !important
