@@ -1,9 +1,9 @@
-import { RECEIVE_ABSTRACT } from '../actions';
+import { SELECT_ABSTRACT } from '../actions';
 import { slice, indexOf } from 'lodash';
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case RECEIVE_ABSTRACT:
+    case SELECT_ABSTRACT:
       let index = indexOf(state, action.parent);
       let chopped = slice(state, 0, index + 1);
       return [

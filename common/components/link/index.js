@@ -2,19 +2,38 @@ import { default as React, PropTypes, } from 'react';
 import { shuffle, take } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
-import { fetchAbstract, previewAbstract, unpreviewAbstract } from '../../actions';
+import {
+  fetchAbstract,
+  previewAbstract,
+  unpreviewAbstract,
+  preloadAbstractLinks
+} from '../../actions';
 import classNames from 'classnames';
 import linkSelector from '../../selectors/link'
 
 class Node extends React.Component {
   componentDidMount(){
-    const { onLinkClick, url, onLinkHover, onLinkUnhover } = this.props;
-    // clicks
-    $(findDOMNode(this)).on('click', 'a', function(e){
+    const {
+      onLinkClick,
+      url,
+      onLinkHover,
+      onLinkUnhover,
+      link,
+      onLinkLoad
+    } = this.props;
+
+    // handle clicks
+    $(findDOMNode(this)).on('click', 'a:not(.ab-title__link)', function(e){
       e.preventDefault();
-      onLinkClick($(e.currentTarget).attr('href'), url);
+      const href = $(e.currentTarget).attr('href');
+      if(href.indexOf('.pdf') > 0){
+        window.open(href, '_blank');
+      }else{
+        onLinkClick(href, url);
+      }
     });
-    // hovers
+
+    // handle hovers
     $(findDOMNode(this)).find('a').hover(function(e){
       e.preventDefault();
       onLinkHover($(e.currentTarget).attr('href'));
@@ -22,6 +41,9 @@ class Node extends React.Component {
       e.preventDefault();
       onLinkUnhover();
     });
+
+    // preload links
+    onLinkLoad(url);
   }
   render() {
     const { link, onLinkClick, url } = this.props;
@@ -39,7 +61,7 @@ class Node extends React.Component {
       return (
         <li id={url} className={linkClasses}>
           <div className="ab-title">
-            <a href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
+            <a className="ab-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
           </div>
           <div className="ab-content" dangerouslySetInnerHTML={{__html: content}}></div>
         </li>
@@ -58,6 +80,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onLinkUnhover: () => {
       dispatch(unpreviewAbstract())
+    },
+    onLinkLoad: (url) => {
+      dispatch(preloadAbstractLinks(url))
     }
   }
 }
