@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import explore from './explore';
 import home from './home';
+import api from './api';
 import compression from 'compression';
 
 const { PORT, NODE_ENV } = process.env;
@@ -37,6 +38,7 @@ app
   .use(express.static(path.resolve(__dirname, '../public')))
   .use(explore)
   .use(home)
+  .use(api)
 
 const server = http.createServer(app);
 

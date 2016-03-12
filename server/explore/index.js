@@ -7,18 +7,13 @@ import configureStore from '../../common/store/configure_store';
 import { isURL } from 'validator';
 import Explore from './explore.js';
 import render from '../render.js';
-import fetchAbstract from '../../common/api/abstract';
+import cachedAbstract from '../../common/api/cached_abstract';
 
 let app = express();
 
 app.get('/:url', (req, res, next) => {
-  let url = decodeURIComponent(req.params.url);
-  if(!isURL(url)){
-    return next();
-  }
-
-  fetchAbstract(url).then( results => {
-
+  const url = req.params.url;
+  cachedAbstract(url).then( results => {
     // set initial state as fetched info
     let store = configureStore({
       rootLink: url,
@@ -39,7 +34,7 @@ app.get('/:url', (req, res, next) => {
     // Render our boilerplate page with HTML and the initial state set
     res.send(render(html, store.getState(), results.title));
   }).catch( err => {
-    console.log('error here', err.stack)
+    console.log('ERROR | ', err.stack)
     next()
   })
 })
