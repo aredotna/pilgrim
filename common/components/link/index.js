@@ -44,6 +44,9 @@ class Node extends React.Component {
 
     // preload links
     onLinkLoad(url);
+
+    // scroll to link
+    findDOMNode(this).scrollIntoView();
   }
   render() {
     const { link, onLinkClick, url } = this.props;
