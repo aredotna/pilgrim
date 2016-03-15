@@ -17,6 +17,7 @@ small-text()
   text-transform uppercase
 
 html, body, #root
+  -webkit-font-smoothing antialiased
   body-text()
   height 100%
   margin 0
@@ -27,7 +28,23 @@ html, body, #root
 
 .l-home
   text-align center
-  margin-top 20%
+  margin-top 15%
+
+  .home-content
+    width 400px
+    margin 0 auto
+    text-align left
+    ul
+      line-height 1.5
+  .home-snippet
+    display block
+    width 200px
+    border 1px solid #aaa
+    padding unit
+    margin unit auto
+    text-align center
+    text-decoration none
+    color black
 
 .l-explore
   width 100%

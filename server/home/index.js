@@ -10,9 +10,7 @@ let app = express();
 
 app.get('/', (req, res, next) => {
   // set initial state as fetched info
-  let store = configureStore({
-    abstract: ''
-  });
+  let store = configureStore();
 
   // Render the component to a raw string
   const html = renderToStaticMarkup(
