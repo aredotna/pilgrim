@@ -1,5 +1,7 @@
 import { fetchLocalAbstract } from '../api/abstract';
 import { map } from 'lodash';
+import $ from 'jquery';
+import ajaxq from 'ajaxq';
 
 export const REQUEST_ABSTRACT = 'REQUEST_ABSTRACT';
 export const RECEIVE_ABSTRACT = 'RECEIVE_ABSTRACT';
@@ -73,6 +75,7 @@ export function fetchAbstract(href, parent) {
     if(abstract.link){
       return dispatch(selectAbstract(href, abstract.link, parent));
     } else {
+      $.ajaxq.abort('pilgrim');
       dispatch(requestAbstract(href))
       return fetchLocalAbstract(href)
         .then(abstract => {

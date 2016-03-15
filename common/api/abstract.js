@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch';
 import qs from 'qs';
 import { map, filter } from 'lodash';
 import url from 'url';
+import $ from 'jquery';
+import ajaxq from 'ajaxq';
 
 let { ABSTRACT_ENDPOINT, APP_URL } = process.env;
 
@@ -22,15 +24,9 @@ function parseJSON(response){
 
 export function fetchLocalAbstract(url){
   return Q.promise((resolve, reject) => {
-    fetch(`${APP_URL}api/${encodeURIComponent(url)}`)
-      .then(checkStatus)
-      .then(parseJSON)
-      .then((data) => {
-        return resolve(data);
-      })
-      .catch((error) => {
-        return reject(error);
-      });
+    $.getq('pilgrim', `${APP_URL}api/${encodeURIComponent(url)}`, (data) => {
+      resolve(data);
+    });
   });
 }
 
