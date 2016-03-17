@@ -8,6 +8,7 @@ import Explore from '../server/explore/explore.js';
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState);
 const rootElement = document.getElementById("root");
+window.__QUEUE__ = [];
 
 if(!isEmpty(initialState.rootLink)){
   render(

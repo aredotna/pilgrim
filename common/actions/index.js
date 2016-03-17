@@ -1,7 +1,6 @@
-import { fetchLocalAbstract } from '../api/abstract';
+import { fetchLocalAbstract } from '../api/local_abstract';
 import { map } from 'lodash';
-import $ from 'jquery';
-import ajaxq from 'ajaxq';
+import { clearQueue } from '../lib/queue';
 
 export const REQUEST_ABSTRACT = 'REQUEST_ABSTRACT';
 export const RECEIVE_ABSTRACT = 'RECEIVE_ABSTRACT';
@@ -75,7 +74,7 @@ export function fetchAbstract(href, parent) {
     if(abstract.link){
       return dispatch(selectAbstract(href, abstract.link, parent));
     } else {
-      $.ajaxq.abort('pilgrim');
+      clearQueue();
       dispatch(requestAbstract(href))
       return fetchLocalAbstract(href)
         .then(abstract => {
