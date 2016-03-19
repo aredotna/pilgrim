@@ -5,7 +5,7 @@ import cachedLink from '../../common/api/cached_link';
 let app = express();
 
 app.get('/api/:url', (req, res, next) => {
-  cachedLink(req.params.url).then(results => {
+  cachedLink(req.params.url, req).then(results => {
     res.json(results);
   }).catch(err => {
     console.log('API ERROR | ', err.stack);

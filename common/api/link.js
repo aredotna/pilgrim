@@ -3,13 +3,14 @@ import read from 'node-readability';
 import qs from 'qs';
 import { map, filter } from 'lodash';
 import parseLinks from '../lib/parse_links';
+import cleanRulers from '../lib/clean_rulers';
 import url from 'url';
 
 let { ABSTRACT_ENDPOINT } = process.env;
 
-export default (url) => {
+export default (url, req) => {
   return Q.promise((resolve, reject) => {
-    read(url, (err, article, meta) => {
+    read(url, { cleanRulers: cleanRulers }, (err, article, res) => {
       if(err){
         return reject(err);
       }
@@ -17,10 +18,11 @@ export default (url) => {
         resolve({
           html: article.content,
           title: article.title,
-          hrefs: hrefs
+          hrefs: hrefs,
+          url: url
         });
         return article.close();
       }).catch((err) =>{ return reject(err) });
-    })
+    });
   });
 }

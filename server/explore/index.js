@@ -13,7 +13,7 @@ let app = express();
 
 app.get('/:url', (req, res, next) => {
   const url = req.params.url;
-  cachedLink(url).then( results => {
+  cachedLink(url, req).then( results => {
     // set initial state as fetched info
     let store = configureStore({
       rootLink: url,

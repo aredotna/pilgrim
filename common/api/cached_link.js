@@ -3,7 +3,7 @@ import cache from '../lib/cache';
 import { isURL } from 'validator';
 import fetchLink from './link';
 
-export default (url) => {
+export default (url, req) => {
   const decodedURL = decodeURIComponent(url);
   return Q.promise((resolve, reject) => {
     if(!isURL(decodedURL)) return reject(new Error("Not a URL"));
@@ -12,11 +12,10 @@ export default (url) => {
       .then((data) => {
         resolve(data);
       }, () => {
-        fetchLink(decodedURL).then( results => {
+        fetchLink(decodedURL, req).then( results => {
           cache.set(url, results);
           resolve(results);
         }).catch( err => {
-          console.log('error getting cached', err.stack);
           reject(err);
         })
       })
