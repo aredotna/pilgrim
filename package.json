@@ -45,7 +45,7 @@
     "extract-text-webpack-plugin": "^1.0.0",
     "foreman": "^1.4.1",
     "html-to-react": "^0.1.2",
-    "jquery": "^2.2.1",
+    "jquery": "^2.2.2",
     "jsdom": "^8.1.0",
     "json-loader": "^0.5.4",
     "lodash": "^3.10.1",

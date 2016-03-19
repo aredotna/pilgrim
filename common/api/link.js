@@ -13,12 +13,14 @@ export default (url) => {
       if(err){
         return reject(err);
       }
-      resolve({
-        html: article.content,
-        title: article.title,
-        hrefs: parseLinks(article.content)
-      });
-      return article.close();
+      parseLinks(article.content).then((hrefs) => {
+        resolve({
+          html: article.content,
+          title: article.title,
+          hrefs: hrefs
+        });
+        return article.close();
+      }).catch((err) =>{ return reject(err) });
     })
   });
 }
