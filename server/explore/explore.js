@@ -18,7 +18,7 @@ class Explore extends React.Component {
         <div className="l-path path-list">
           {map(path, (url) => <PathItem url={url} key={url} /> )}
         </div>
-        <ul className='l-abstract'>
+        <ul className='l-links'>
           {map(path, (url) => <Link key={url} url={url} /> )}
         </ul>
       </div>

@@ -2,7 +2,6 @@ import { default as React, PropTypes } from 'react';
 import { map } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
-import stripTitle from '../../lib/strip_title';
 import linkSelector from '../../selectors/link'
 
 class PathItem extends React.Component {
@@ -15,7 +14,7 @@ class PathItem extends React.Component {
       <div className="path-list__item" key={url}>
         <div
           className="path-list__item__wrap"
-          dangerouslySetInnerHTML={{__html: stripTitle(link.title)}} />
+          dangerouslySetInnerHTML={{__html: link.title}} />
       </div>
     );
   }

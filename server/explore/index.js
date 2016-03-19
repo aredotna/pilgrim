@@ -7,13 +7,13 @@ import configureStore from '../../common/store/configure_store';
 import { isURL } from 'validator';
 import Explore from './explore.js';
 import render from '../render.js';
-import cachedAbstract from '../../common/api/cached_abstract';
+import cachedLink from '../../common/api/cached_link';
 
 let app = express();
 
 app.get('/:url', (req, res, next) => {
   const url = req.params.url;
-  cachedAbstract(url).then( results => {
+  cachedLink(url).then( results => {
     // set initial state as fetched info
     let store = configureStore({
       rootLink: url,

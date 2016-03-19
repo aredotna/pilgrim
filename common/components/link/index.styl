@@ -1,4 +1,4 @@
-.l-abstract
+.l-links
   clearfix()
   margin 0
   padding 0
@@ -10,20 +10,25 @@
   overflow-y hidden
   white-space nowrap
 
-.linkAbstract.is-expanded
-  padding unit
-  list-style-type none
-  max-width 400px
-  display inline-block
-  height 100%
-  overflow auto
-  white-space normal
-  vertical-align top
+.link
+  &.is-expanded
+    padding unit
+    list-style-type none
+    max-width 400px
+    display inline-block
+    height 100%
+    overflow auto
+    white-space normal
+    vertical-align top
 
-  *
-    float none !important
+    *
+      float none !important
 
-.ab-title
+  &.has-error
+    width 100%
+    background-color pink
+
+.link-title
   font-size 1.4rem
   line-height 1.6rem
   padding unit
@@ -31,10 +36,10 @@
   a
     color black
     text-decoration none
-  a:hover
+  a:hlinkover
     text-decoration underline
 
-.ab-content
+.link-content
   color light-text
   padding-bottom (unit / 2)
   p(1rem)
@@ -63,46 +68,16 @@
 
   table
     display none
+  ul
+    ul()
 
-.ab-image
+.link-image
   img
     max-width 100%
 
-.ab-divider
+.link-divider
   border none
   border-top 1px solid #eee
   margin unit 0
 
-.ab-tag
-  margin-right (unit / 4)
-  font-family "Arial"
-  font-size .8rem
-  text-transform uppercase
-  padding-bottom (unit / 2)
-
-  a
-    text-decoration none
-    color light-text
-
-.childlink
-  small-text()
-  color #0042AD
-  cursor pointer
-  word-break break-all
-
-ul
-  ul()
-
-// overrides
-.visually-hidden,
-.ad,
-.hidden,
-.interactive,
-iframe,
-.inline-icon,
-.u-h,
-.synved-social-button
-  display none
-
-.aspectRatioPlaceholder-fill
-  padding-bottom 0 !important
+@require './overrides'

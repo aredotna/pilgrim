@@ -3,15 +3,15 @@ import { shuffle, take } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import {
-  fetchAbstract,
-  previewAbstract,
-  unpreviewAbstract,
-  preloadAbstractLinks
+  fetchLink,
+  previewLink,
+  unpreviewLink,
+  preloadLinks
 } from '../../actions';
 import classNames from 'classnames';
 import linkSelector from '../../selectors/link'
 
-class Node extends React.Component {
+class Link extends React.Component {
   componentDidMount(){
     const {
       onLinkClick,
@@ -23,7 +23,7 @@ class Node extends React.Component {
     } = this.props;
 
     // handle clicks
-    $(findDOMNode(this)).on('click', 'a:not(.ab-title__link)', function(e){
+    $(findDOMNode(this)).on('click', 'a:not(.link-title__link)', function(e){
       e.preventDefault();
       const href = $(e.currentTarget).attr('href');
       if(href.indexOf('.pdf') > 0){
@@ -50,25 +50,37 @@ class Node extends React.Component {
   }
   render() {
     const { link, onLinkClick, url } = this.props;
+    const hasError = link.html.indexOf('Error converting html to string.') > -1;
+    const title = link.title.replace(' - Wikipedia, the free encyclopedia', '');
 
     const linkClasses = classNames({
-      'linkAbstract': true,
-      'is-expanded': link
+      'link': true,
+      'is-expanded': link,
+      'has-error': hasError
     });
 
-    if(link){
-      const title = link.title.replace(' - Wikipedia, the free encyclopedia', '');
+    if(link && !hasError){
       const content = link.html.replace('Advertisement', '').replace('From Wikipedia, the free encyclopedia', '');
-      const tags = take(shuffle(link.keywords.split(',')), 6);
 
       return (
         <li id={url} className={linkClasses}>
-          <div className="ab-title">
-            <a className="ab-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
+          <div className="link-title">
+            <a className="link-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
           </div>
-          <div className="ab-content" dangerouslySetInnerHTML={{__html: content}}></div>
+          <div className="link-content" dangerouslySetInnerHTML={{__html: content}}></div>
         </li>
       );
+    }else if(link && hasError){
+      return (
+        <li id={url} className={linkClasses}>
+          <div className="link-title">
+            <a className="link-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
+          </div>
+          <div className="link-content">
+            <h2> Pilgrim can't parse this link </h2>
+          </div>
+        </li>
+      )
     }
   }
 }
@@ -76,19 +88,19 @@ class Node extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLinkClick: (url, parent) => {
-      dispatch(fetchAbstract(url, parent))
+      dispatch(fetchLink(url, parent))
     },
     onLinkHover: (url) => {
-      dispatch(previewAbstract(url))
+      dispatch(previewLink(url))
     },
     onLinkUnhover: () => {
-      dispatch(unpreviewAbstract())
+      dispatch(unpreviewLink())
     },
     onLinkLoad: (url) => {
-      dispatch(preloadAbstractLinks(url))
+      dispatch(preloadLinks(url))
     }
   }
 }
 
-let Link = connect(linkSelector, mapDispatchToProps)(Node);
-export default Link;
+let ConnectedLink = connect(linkSelector, mapDispatchToProps)(Link);
+export default ConnectedLink;
