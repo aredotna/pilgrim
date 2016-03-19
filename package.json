@@ -59,6 +59,7 @@
     "react": "^0.14.5",
     "react-dom": "0.14.0",
     "react-redux": "^4.0.0",
+    "readability": "^0.1.0",
     "redux": "^3.0.0",
     "redux-thunk": "^1.0.3",
     "reselect": "^2.0.3",
