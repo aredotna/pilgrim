@@ -1,55 +1,55 @@
-import { fetchLocalAbstract } from '../api/local_abstract';
+import { fetchLocalLink } from '../api/local_link';
 import { map } from 'lodash';
 import { clearQueue } from '../lib/queue';
 
-export const REQUEST_ABSTRACT = 'REQUEST_ABSTRACT';
-export const RECEIVE_ABSTRACT = 'RECEIVE_ABSTRACT';
-export const SELECT_ABSTRACT = 'SELECT_ABSTRACT';
-export const PREVIEW_ABSTRACT = 'PREVIEW_ABSTRACT';
-export const UNPREVIEW_ABSTRACT = 'UNPREVIEW_ABSTRACT';
-export const PRELOAD_ABSTRACT_LINKS = 'PRELOAD_ABSTRACT_LINKS';
+export const REQUEST_LINK = 'REQUEST_LINK';
+export const RECEIVE_LINK = 'RECEIVE_LINK';
+export const SELECT_LINK = 'SELECT_LINK';
+export const PREVIEW_LINK = 'PREVIEW_LINK';
+export const UNPREVIEW_LINK = 'UNPREVIEW_LINK';
+export const PRELOAD_LINK_LINKS = 'PRELOAD_LINK_LINKS';
 
 import linkSelector from '../selectors/link';
 
-function requestAbstract(href) {
+function requestLink(href) {
   return {
-    type: REQUEST_ABSTRACT,
+    type: REQUEST_LINK,
     href
   }
 }
 
-function receiveAbstract(href, abstract) {
+function receiveLink(href, link) {
   return {
-    type: RECEIVE_ABSTRACT,
+    type: RECEIVE_LINK,
     href: href,
-    abstract: abstract,
+    link: link,
     parent: parent
   }
 }
 
-function selectAbstract(href, abstract, parent) {
+function selectLink(href, link, parent) {
   return {
-    type: SELECT_ABSTRACT,
+    type: SELECT_LINK,
     href: href,
-    abstract: abstract,
+    link: link,
     parent: parent
   }
 }
 
-export function previewAbstract(href) {
+export function previewLink(href) {
   return {
-    type: PREVIEW_ABSTRACT,
+    type: PREVIEW_LINK,
     href: href
   }
 }
 
-export function unpreviewAbstract() {
+export function unpreviewLink() {
   return {
-    type: UNPREVIEW_ABSTRACT
+    type: UNPREVIEW_LINK
   }
 }
 
-export function preloadAbstractLinks(href) {
+export function preloadLinks(href) {
   return (dispatch, getState) => {
     const state = getState();
     let { link } = linkSelector(state, { url: href });
@@ -57,9 +57,9 @@ export function preloadAbstractLinks(href) {
       map(link.hrefs.slice(0, 10), (href) => {
         let { link } = linkSelector(state, { url: href });
         if(!link){
-          dispatch(requestAbstract(href))
-          fetchLocalAbstract(href).then(abstract => {
-            dispatch(receiveAbstract(href, abstract))
+          dispatch(requestLink(href))
+          fetchLocalLink(href).then(link => {
+            dispatch(receiveLink(href, link))
           });
         }
       })
@@ -67,19 +67,19 @@ export function preloadAbstractLinks(href) {
   }
 }
 
-export function fetchAbstract(href, parent) {
+export function fetchLink(href, parent) {
   return (dispatch, getState) => {
     const state = getState();
-    let abstract = linkSelector(state, { url: href });
-    if(abstract.link){
-      return dispatch(selectAbstract(href, abstract.link, parent));
+    let link = linkSelector(state, { url: href });
+    clearQueue();
+    if(link.link){
+      return dispatch(selectLink(href, link.link, parent));
     } else {
-      clearQueue();
-      dispatch(requestAbstract(href))
-      return fetchLocalAbstract(href)
-        .then(abstract => {
-          dispatch(receiveAbstract(href, abstract))
-          dispatch(selectAbstract(href, abstract, parent))
+      dispatch(requestLink(href))
+      return fetchLocalLink(href)
+        .then(link => {
+          dispatch(receiveLink(href, link))
+          dispatch(selectLink(href, link, parent))
         });
     }
   }

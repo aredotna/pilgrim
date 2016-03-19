@@ -1,7 +1,7 @@
 import Q from 'bluebird-q';
 import cache from '../lib/cache';
 import { isURL } from 'validator';
-import fetchAbstract from './abstract';
+import fetchLink from './link';
 
 export default (url) => {
   const decodedURL = decodeURIComponent(url);
@@ -12,7 +12,7 @@ export default (url) => {
       .then((data) => {
         resolve(data);
       }, () => {
-        fetchAbstract(decodedURL).then( results => {
+        fetchLink(decodedURL).then( results => {
           cache.set(url, results);
           resolve(results);
         }).catch( err => {
