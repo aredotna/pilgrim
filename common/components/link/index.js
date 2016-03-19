@@ -23,7 +23,7 @@ class Link extends React.Component {
     } = this.props;
 
     // handle clicks
-    $(findDOMNode(this)).on('click', 'a:not(.link-title__link)', function(e){
+    $(findDOMNode(this)).on('click', 'a:not(.no-intercept)', function(e){
       e.preventDefault();
       const href = $(e.currentTarget).attr('href');
       if(href.indexOf('.pdf') > 0){
@@ -50,34 +50,34 @@ class Link extends React.Component {
   }
   render() {
     const { link, onLinkClick, url } = this.props;
-    const hasError = link.html.indexOf('Error converting html to string.') > -1;
+    const noContent = link.html.length < 200;
     const title = link.title.replace(' - Wikipedia, the free encyclopedia', '');
 
     const linkClasses = classNames({
       'link': true,
       'is-expanded': link,
-      'has-error': hasError
+      'has-no-content': noContent
     });
 
-    if(link && !hasError){
+    if(link && !noContent){
       const content = link.html.replace('Advertisement', '').replace('From Wikipedia, the free encyclopedia', '');
 
       return (
         <li id={url} className={linkClasses}>
           <div className="link-title">
-            <a className="link-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
+            <a className="link-title__link no-intercept" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
           </div>
           <div className="link-content" dangerouslySetInnerHTML={{__html: content}}></div>
         </li>
       );
-    }else if(link && hasError){
+    }else if(link || noContent){
       return (
         <li id={url} className={linkClasses}>
           <div className="link-title">
             <a className="link-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
           </div>
-          <div className="link-content">
-            <h2> Pilgrim can't parse this link </h2>
+          <div className="link-content__error">
+            Pilgrim can't parse any content from this link, try <a href={url} target="_blank" className="no-intercept">opening this page in a normal tab</a>.
           </div>
         </li>
       )

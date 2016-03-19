@@ -11,23 +11,20 @@
   white-space nowrap
 
 .link
-  &.is-expanded
-    padding unit
-    list-style-type none
-    max-width 400px
-    display inline-block
-    height 100%
-    overflow-y scroll
-    overflow-x hidden
-    white-space normal
-    vertical-align top
+  padding unit
+  list-style-type none
+  width 400px
+  display inline-block
+  height 100%
+  overflow-y scroll
+  overflow-x hidden
+  white-space normal
+  vertical-align top
+  *
+    float none !important
 
-    *
-      float none !important
-
-  &.has-error
-    width 100%
-    background-color pink
+  &.has-no-content
+    background-color error-bg
 
 .link-title
   font-size 1.4rem
@@ -37,7 +34,7 @@
   a
     color black
     text-decoration none
-  a:hlinkover
+  a:hover
     text-decoration underline
 
 .link-content
@@ -71,6 +68,21 @@
     display none
   ul
     ul()
+
+.link-content__error
+  @extend .link-content
+  &:before
+    content '!'
+    display block
+    margin unit auto (unit * 2)
+    border 1px solid light-text
+    padding 20px
+    max-width 26px
+    font-size 2rem
+    text-align center
+    border-radius 50px
+
+  font-weight normal
 
 .link-image
   img
