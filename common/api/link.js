@@ -10,7 +10,7 @@ let { ABSTRACT_ENDPOINT } = process.env;
 
 export default (url, req) => {
   return Q.promise((resolve, reject) => {
-    read(url, { cleanRulers: cleanRulers }, (err, article, res) => {
+    read(url, { cleanRulers: cleanRulers, maxRedirects: 40 }, (err, article, res) => {
       if(err){
         return reject(err);
       }
