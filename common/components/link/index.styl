@@ -13,7 +13,7 @@
 .link
   padding unit
   list-style-type none
-  width 400px
+  width column-width
   display inline-block
   height 100%
   overflow-y scroll
@@ -25,6 +25,9 @@
 
   &.has-no-content
     background-color error-bg
+
+  &:first-child
+    margin-left "calc(50% - %s)" % (column-width / 2)
 
 .link-title
   font-size 1.4rem
