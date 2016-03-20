@@ -51,6 +51,7 @@
     "lodash": "^3.10.1",
     "memjs": "^0.9.0",
     "morgan": "^1.6.1",
+    "newrelic": "^1.25.5",
     "nib": "^1.1.0",
     "node-readability": "broskoski/readability",
     "qs": "^6.0.2",
