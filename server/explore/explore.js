@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Link from '../../common/components/link/index';
 import PreviewLink from '../../common/components/link/preview_link';
 import PathItem from '../../common/components/path/index';
+import Loading from '../../common/components/loading/index';
 
 const { APP_URL } = process.env;
 
@@ -15,8 +16,11 @@ class Explore extends React.Component {
     const { path, preview_url } = this.props;
     return (
       <div className="l-explore">
-        <div className="l-path path-list">
-          {map(path, (url) => <PathItem url={url} key={url} /> )}
+        <div className="l-path">
+          <div className="path-list">
+            {map(path, (url) => <PathItem url={url} key={url} /> )}
+          </div>
+          <Loading />
         </div>
         <ul className='l-links'>
           {map(path, (url) => <Link key={url} url={url} /> )}

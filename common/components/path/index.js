@@ -6,7 +6,7 @@ import linkSelector from '../../selectors/link'
 
 class PathItem extends React.Component {
   componentDidMount(){
-    findDOMNode(this).scrollIntoView();
+    $('.path-list').animate({ scrollLeft: $('.path-list')[0].scrollWidth }, 100);
   }
   render() {
     const { link, onPathItemClick, url } = this.props;

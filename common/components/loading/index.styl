@@ -1,0 +1,55 @@
+.l-loading
+  position fixed
+  right 0px
+  top 0px
+  width 100px
+  height topbar-height
+  text-align right
+  padding-right unit
+
+.loading-star
+  position relative
+  padding (unit / 1.5) 0
+  height 50px
+  width 20px
+  display inline-block
+  box-sizing border-box
+  svg
+    height 100%
+    width 100%
+    opacity 0.1
+    vertical-align top
+    transition opacity 0.1s
+    path
+      transition rotate 0.2s
+      transform rotate(0deg)
+
+.is-loading
+  .loading-star svg
+    opacity 1
+  .loading-star svg path
+    animation-name gears-left
+    animation-duration 1s
+    transform-origin 50% 50%
+    animation-iteration-count infinite
+    animation-timing-function linear
+
+  .loading-star__right svg path
+    animation-name gears-right
+    animation-delay 0.1s
+
+@keyframes gears-left
+  0% {
+    transform rotate(0deg)
+  }
+  100% {
+    transform rotate(360deg)
+  }
+
+@keyframes gears-right
+  0% {
+    transform rotate(0deg)
+  }
+  100% {
+    transform rotate(-360deg)
+  }

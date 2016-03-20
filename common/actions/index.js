@@ -14,7 +14,7 @@ import linkSelector from '../selectors/link';
 function requestLink(href) {
   return {
     type: REQUEST_LINK,
-    href
+    href: href
   }
 }
 

@@ -43,10 +43,10 @@ class Link extends React.Component {
     });
 
     // preload links
-    onLinkLoad(url);
+    // onLinkLoad(url);
 
     // scroll to link
-    findDOMNode(this).scrollIntoView();
+    $('.l-links').animate({ scrollLeft: $('.l-links')[0].scrollWidth }, 100);
   }
   render() {
     const { link, onLinkClick, url } = this.props;

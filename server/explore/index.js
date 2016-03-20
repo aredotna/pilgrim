@@ -21,7 +21,8 @@ app.get('/:url', (req, res, next) => {
         [url]: results
       },
       preview_url: '',
-      path: [url]
+      path: [url],
+      loading: false
     });
 
     // Render the component to a raw string
