@@ -39,6 +39,21 @@
     text-decoration none
   a:hover
     text-decoration underline
+  &__link
+    border 1px solid black
+    display block
+    padding unit
+  &__domain
+    display block
+    code()
+    border none
+    border-radius 0
+    font-size 0.8rem
+    margin (unit) auto
+    max-width 90%
+    overflow hidden
+    white-space nowrap
+    text-overflow ellipsis
 
 .link-content
   color light-text
