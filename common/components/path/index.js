@@ -37,15 +37,15 @@ class PathItem extends React.Component {
   render() {
     const { link, onPathItemClick, url, preview_url, will_be_chopped } = this.props;
     const itemClasses = classNames({
-      'path-list__item__wrap': true,
+      'path-list__item': true,
       'is-hovered': (url == preview_url),
       'will-be-chopped': will_be_chopped
     });
 
     return (
-      <div className="path-list__item" key={url} onClick={() => onPathItemClick(url, url)}>
+      <div className={itemClasses} key={url} onClick={() => onPathItemClick(url, url)}>
         <div
-          className={itemClasses}
+          className="path-list__item__wrap"
           dangerouslySetInnerHTML={{__html: link.title}} />
       </div>
     );

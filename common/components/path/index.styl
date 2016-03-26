@@ -21,6 +21,8 @@
 
   &__item
     display inline-block
+    transition 0.3s color
+    color  disabled-text
     cursor pointer
     &__wrap
       display inline-block
@@ -29,13 +31,11 @@
       overflow hidden
       text-overflow ellipsis
       margin-right 5px
-      color  disabled-text
       font-weight bold
-      transition 0.3s color
-      &.is-hovered
-        color black
-      &.will-be-chopped
-        color pink
+    &.is-hovered, &:only-child
+      color black
+    &.will-be-chopped
+      color pink
     &:after
       content '>'
       font-weight bold
