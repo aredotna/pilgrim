@@ -4,8 +4,6 @@ import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import {
   fetchLink,
-  hoverLink,
-  unhoverLink,
   hoverLinkAnchor,
   unhoverLinkAnchor
 } from '../../actions';
@@ -58,18 +56,12 @@ const mapDispatchToProps = (dispatch) => {
     onPathItemClick: (url, parent) => {
       dispatch(fetchLink(url, parent))
     },
-    onLinkHover: (url) => {
-      dispatch(hoverLink(url))
-    },
-    onLinkUnhover: () => {
-      dispatch(unhoverLink())
-    },
-    onLinkAnchorHover: (href) => {
+    onLinkHover: (href) => {
       dispatch(hoverLinkAnchor(href))
     },
-    onLinkAnchorUnhover: () => {
+    onLinkUnhover: () => {
       dispatch(unhoverLinkAnchor())
-    },
+    }
   }
 }
 
