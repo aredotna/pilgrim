@@ -34,8 +34,11 @@
       &.is-hovered
         color black
     &:after
-      content '/'
+      content '>'
+      font-weight bold
       vertical-align top
       color disabled-text
       margin-right 10px
+    &:last-child:after
+      content ''
 
