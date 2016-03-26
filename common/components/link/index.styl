@@ -21,7 +21,7 @@
   white-space normal
   vertical-align top
   opacity 0.6
-  transition 0.3s opacity
+  // transition 0.3s opacity
 
   *
     float none !important
@@ -104,6 +104,15 @@
     display none
   ul
     ul()
+
+  a[href$=".pdf"]
+    cursor alias
+  a[href$=".jpg"],
+  a[href$=".jpeg"],
+  a[href$=".png"],
+  a[href$=".gif"]
+    pointer-events none
+    cursor default
 
 .link-content__error
   @extend .link-content

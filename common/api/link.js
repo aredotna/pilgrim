@@ -4,7 +4,8 @@ import qs from 'qs';
 import { map, filter } from 'lodash';
 import parseLinks from '../lib/parse_links';
 import cleanRulers from '../lib/clean_rulers';
-import url from 'url';
+import embed from 'embed-video';
+import { parse } from 'url';
 
 let { ABSTRACT_ENDPOINT } = process.env;
 
@@ -15,11 +16,18 @@ export default (url, req) => {
         return reject(err);
       }
       parseLinks(article.content).then((hrefs) => {
+        let html = '';
+        if(url.indexOf('youtube') > 0 || url.indexOf('vimeo') > 0){
+          html = embed(url) + article.content;
+        }else{
+          html = article.content;
+        }
         resolve({
-          html: article.content,
+          html: html,
           title: article.title,
           hrefs: hrefs,
-          url: url
+          url: url,
+          host: parse(url).hostname
         });
         return article.close();
       }).catch((err) =>{ return reject(err) });
