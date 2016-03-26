@@ -20,8 +20,14 @@
   overflow-x hidden
   white-space normal
   vertical-align top
+  opacity 0.6
+  transition 0.3s opacity
+
   *
     float none !important
+
+  &:hover
+    opacity 1
 
   &.has-no-content
     background-color error-bg
