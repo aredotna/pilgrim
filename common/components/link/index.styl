@@ -35,6 +35,18 @@
   &:first-child
     margin-left "calc(50% - %s)" % (column-width / 2)
 
+  &.will-be-chopped
+    .link-title a
+      color pink
+    .link-title__link
+      border 1px solid pink
+    .link-content
+      color pink
+      a
+        color pink
+      img
+        opacity 0.1
+
 .link-title
   font-size 1.4rem
   line-height 1.6rem

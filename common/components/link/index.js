@@ -6,6 +6,8 @@ import {
   fetchLink,
   hoverLink,
   unhoverLink,
+  hoverLinkAnchor,
+  unhoverLinkAnchor,
   preloadLinks
 } from '../../actions';
 import classNames from 'classnames';
@@ -18,6 +20,8 @@ class Link extends React.Component {
       url,
       onLinkHover,
       onLinkUnhover,
+      onLinkAnchorHover,
+      onLinkAnchorUnhover,
       link,
       onLinkLoad
     } = this.props;
@@ -42,11 +46,20 @@ class Link extends React.Component {
       onLinkUnhover();
     });
 
+    $(findDOMNode(this)).find('a:not(.no-intercept)').hover(function(e){
+      e.preventDefault();
+      const href = $(e.currentTarget).attr('href');
+      onLinkAnchorHover(href);
+    }, function(e){
+      e.preventDefault();
+      onLinkAnchorUnhover();
+    });
+
     // scroll to link
     $('.l-links').animate({ scrollLeft: $('.l-links')[0].scrollWidth }, 100);
   }
   render() {
-    const { link, onLinkClick, url, preview_url } = this.props;
+    const { link, onLinkClick, url, preview_url, will_be_chopped } = this.props;
     const noContent = link.html.length < 200;
     const title = link.title.replace(' - Wikipedia, the free encyclopedia', '');
 
@@ -54,7 +67,8 @@ class Link extends React.Component {
       'link': true,
       'is-expanded': link,
       'has-no-content': noContent,
-      'is-hovered': (url == preview_url)
+      'is-hovered': (url == preview_url),
+      'will-be-chopped': will_be_chopped
     });
 
     if(link && !noContent){
@@ -93,6 +107,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     onLinkUnhover: () => {
       dispatch(unhoverLink())
+    },
+    onLinkAnchorHover: (href) => {
+      dispatch(hoverLinkAnchor(href))
+    },
+    onLinkAnchorUnhover: () => {
+      dispatch(unhoverLinkAnchor())
     },
     onLinkLoad: (url) => {
       dispatch(preloadLinks(url))

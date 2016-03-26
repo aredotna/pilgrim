@@ -7,7 +7,8 @@ export const RECEIVE_LINK = 'RECEIVE_LINK';
 export const SELECT_LINK = 'SELECT_LINK';
 export const HOVER_LINK = 'HOVER_LINK';
 export const UNHOVER_LINK = 'UNHOVER_LINK';
-export const PRELOAD_LINK_LINKS = 'PRELOAD_LINK_LINKS';
+export const HOVER_LINK_ANCHOR = 'HOVER_LINK_ANCHOR';
+export const UNHOVER_LINK_ANCHOR = 'UNHOVER_LINK_ANCHOR';
 
 import linkSelector from '../selectors/link';
 
@@ -49,21 +50,16 @@ export function unhoverLink() {
   }
 }
 
-export function preloadLinks(href) {
-  return (dispatch, getState) => {
-    const state = getState();
-    let { link } = linkSelector(state, { url: href });
-    if(link && link.hrefs.length){
-      map(link.hrefs.slice(0, 10), (href) => {
-        let { link } = linkSelector(state, { url: href });
-        if(!link){
-          dispatch(requestLink(href))
-          fetchLocalLink(href).then(link => {
-            dispatch(receiveLink(href, link))
-          });
-        }
-      })
-    }
+export function hoverLinkAnchor(href){
+  return {
+    type: HOVER_LINK_ANCHOR,
+    href: href
+  }
+}
+
+export function unhoverLinkAnchor(){
+  return {
+    type: UNHOVER_LINK_ANCHOR
   }
 }
 

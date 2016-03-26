@@ -21,6 +21,7 @@
 
   &__item
     display inline-block
+    cursor pointer
     &__wrap
       display inline-block
       max-width 300px
@@ -33,6 +34,8 @@
       transition 0.3s color
       &.is-hovered
         color black
+      &.will-be-chopped
+        color pink
     &:after
       content '>'
       font-weight bold

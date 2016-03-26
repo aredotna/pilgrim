@@ -20,7 +20,8 @@ app.get('/:url', (req, res, next) => {
       links: {
         [url]: results
       },
-      preview_url: '',
+      preview_url: false,
+      hovered_link: false,
       path: [url],
       loading: false
     });
