@@ -4,8 +4,8 @@ import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import {
   fetchLink,
-  previewLink,
-  unpreviewLink,
+  hoverLink,
+  unhoverLink,
   preloadLinks
 } from '../../actions';
 import classNames from 'classnames';
@@ -34,29 +34,27 @@ class Link extends React.Component {
     });
 
     // handle hovers
-    $(findDOMNode(this)).find('a').hover(function(e){
+    $(findDOMNode(this)).hover(function(e){
       e.preventDefault();
-      onLinkHover($(e.currentTarget).attr('href'));
+      onLinkHover(url);
     }, function(e){
       e.preventDefault();
       onLinkUnhover();
     });
 
-    // preload links
-    // onLinkLoad(url);
-
     // scroll to link
     $('.l-links').animate({ scrollLeft: $('.l-links')[0].scrollWidth }, 100);
   }
   render() {
-    const { link, onLinkClick, url } = this.props;
+    const { link, onLinkClick, url, preview_url } = this.props;
     const noContent = link.html.length < 200;
     const title = link.title.replace(' - Wikipedia, the free encyclopedia', '');
 
     const linkClasses = classNames({
       'link': true,
       'is-expanded': link,
-      'has-no-content': noContent
+      'has-no-content': noContent,
+      'is-hovered': (url == preview_url)
     });
 
     if(link && !noContent){
@@ -91,10 +89,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(fetchLink(url, parent))
     },
     onLinkHover: (url) => {
-      dispatch(previewLink(url))
+      dispatch(hoverLink(url))
     },
     onLinkUnhover: () => {
-      dispatch(unpreviewLink())
+      dispatch(unhoverLink())
     },
     onLinkLoad: (url) => {
       dispatch(preloadLinks(url))

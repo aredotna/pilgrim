@@ -21,7 +21,6 @@
 
   &__item
     display inline-block
-    color disabled-text
     &__wrap
       display inline-block
       max-width 300px
@@ -29,11 +28,14 @@
       overflow hidden
       text-overflow ellipsis
       margin-right 5px
+      color  disabled-text
+      font-weight bold
+      transition 0.3s color
+      &.is-hovered
+        color black
     &:after
       content '/'
       vertical-align top
       color disabled-text
       margin-right 10px
-    &:last-child
-      font-weight bold
-      color black
+

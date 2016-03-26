@@ -5,8 +5,8 @@ import { clearQueue } from '../lib/queue';
 export const REQUEST_LINK = 'REQUEST_LINK';
 export const RECEIVE_LINK = 'RECEIVE_LINK';
 export const SELECT_LINK = 'SELECT_LINK';
-export const PREVIEW_LINK = 'PREVIEW_LINK';
-export const UNPREVIEW_LINK = 'UNPREVIEW_LINK';
+export const HOVER_LINK = 'HOVER_LINK';
+export const UNHOVER_LINK = 'UNHOVER_LINK';
 export const PRELOAD_LINK_LINKS = 'PRELOAD_LINK_LINKS';
 
 import linkSelector from '../selectors/link';
@@ -36,16 +36,16 @@ function selectLink(href, link, parent) {
   }
 }
 
-export function previewLink(href) {
+export function hoverLink(href) {
   return {
-    type: PREVIEW_LINK,
+    type: HOVER_LINK,
     href: href
   }
 }
 
-export function unpreviewLink() {
+export function unhoverLink() {
   return {
-    type: UNPREVIEW_LINK
+    type: UNHOVER_LINK
   }
 }
 
