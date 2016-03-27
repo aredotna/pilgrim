@@ -20,11 +20,11 @@ export default (url, req) => {
           resolve(results);
 
           // preload 10 links
-          take(results.hrefs, 10).map(href => {
-            fetchLink(href, req).then( results => {
-              cache.set(href, results);
-            });
-          });
+          // take(results.hrefs, 10).map(href => {
+          //   fetchLink(href, req).then( results => {
+          //     cache.set(href, results);
+          //   });
+          // });
         }).catch( err => {
           reject(err);
         })
