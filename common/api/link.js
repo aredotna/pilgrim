@@ -30,7 +30,10 @@ export default (url, req) => {
           host: parse(url).hostname
         });
         return article.close();
-      }).catch((err) =>{ return reject(err) });
+      }).catch((err) =>{
+        console.log('error parsing', err);
+        return reject(err)
+      });
     });
   });
 }
