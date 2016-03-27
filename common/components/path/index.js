@@ -4,8 +4,8 @@ import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import {
   fetchLink,
-  hoverLinkAnchor,
-  unhoverLinkAnchor
+  hoverLink,
+  unhoverLink
 } from '../../actions';
 import classNames from 'classnames';
 import linkSelector from '../../selectors/link'
@@ -41,7 +41,7 @@ class PathItem extends React.Component {
     });
 
     return (
-      <div className={itemClasses} key={url} onClick={() => onPathItemClick(url, url)}>
+      <div className={itemClasses} key={url} onClick={() => onPathItemClick(url)}>
         <div
           className="path-list__item__wrap"
           dangerouslySetInnerHTML={{__html: link.title}} />
@@ -50,17 +50,16 @@ class PathItem extends React.Component {
   }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPathItemClick: (url, parent) => {
-      dispatch(fetchLink(url, parent))
+    onPathItemClick: (url) => {
+      $('.l-links').animate({ scrollLeft: $('[id="'+encodeURIComponent(url)+'"]').offset().left }, 100);
     },
     onLinkHover: (href) => {
-      dispatch(hoverLinkAnchor(href))
+      dispatch(hoverLink(href))
     },
     onLinkUnhover: () => {
-      dispatch(unhoverLinkAnchor())
+      dispatch(unhoverLink())
     }
   }
 }

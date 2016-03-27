@@ -61,7 +61,7 @@ class Link extends React.Component {
   render() {
     const { link, onLinkClick, url, preview_url, will_be_chopped } = this.props;
     const noContent = link.html.length < 200;
-    const title = link.title.replace(' - Wikipedia, the free encyclopedia', '');
+    const title = link.title;
 
     const linkClasses = classNames({
       'link': true,
@@ -74,7 +74,7 @@ class Link extends React.Component {
     if(link && !noContent){
       const content = link.html.replace('Advertisement', '').replace('From Wikipedia, the free encyclopedia', '');
       return (
-        <li id={url} className={linkClasses} data-host={link.host}>
+        <li id={encodeURIComponent(url)} className={linkClasses} data-host={link.host}>
           <div className="link-title">
             <a className="link-title__link no-intercept" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
             <a className="link-title__domain no-intercept" href={url} target="_blank">{url}</a>
