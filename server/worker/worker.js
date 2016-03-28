@@ -5,14 +5,9 @@ import fetchLink from '../../common/api/link';
 import cache from '../../common/lib/cache';
 
 const { REDISCLOUD_URL } = process.env;
-const redisUrl = url.parse(REDISCLOUD_URL);
-
 let q = kue.createQueue({
   prefix: 'q',
-  redis: {
-    port: redisUrl.port,
-    host: redisUrl.hostname
-  }
+  redis: REDISCLOUD_URL
 });
 
 q.on('error', function(err) { console.log('error creating worker queue'); });

@@ -9,14 +9,9 @@ import kue from 'kue';
 import url from 'url';
 
 const { REDISCLOUD_URL } = process.env;
-const redisUrl = url.parse(REDISCLOUD_URL);
-
 let queue = kue.createQueue({
   prefix: 'q',
-  redis: {
-    port: redisUrl.port,
-    host: redisUrl.hostname
-  }
+  redis: REDISCLOUD_URL
 });
 
 export default (url, req) => {
