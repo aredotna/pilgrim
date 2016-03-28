@@ -1,2 +1,4 @@
 web: node server/index.js
 memcached: memcached -p 11211
+redis: redis-server
+worker: node server/worker/index.js

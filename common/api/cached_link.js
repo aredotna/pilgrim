@@ -5,6 +5,19 @@ import fetchLink from './link';
 import throttled from '../lib/throttled';
 import { verbose } from '../lib/loggers';
 import { take } from 'lodash';
+import kue from 'kue';
+import url from 'url';
+
+const { REDISCLOUD_URL } = process.env;
+const redisUrl = url.parse(REDISCLOUD_URL);
+
+let queue = kue.createQueue({
+  prefix: 'q',
+  redis: {
+    port: redisUrl.port,
+    host: redisUrl.hostname
+  }
+});
 
 export default (url, req) => {
   const decodedURL = decodeURIComponent(url);
@@ -14,17 +27,22 @@ export default (url, req) => {
       .get(decodedURL)
       .then((data) => {
         resolve(data);
+
+        // preload 10 links
+        take(data.hrefs, 10).map(href => {
+          console.log('adding url to the queue', href);
+          queue.create('fetchLink', href).priority('high').save();
+        });
       }, () => {
         fetchLink(decodedURL, req).then( results => {
           cache.set(url, results);
           resolve(results);
 
           // preload 10 links
-          // take(results.hrefs, 10).map(href => {
-          //   fetchLink(href, req).then( results => {
-          //     cache.set(href, results);
-          //   });
-          // });
+          take(results.hrefs, 10).map(href => {
+            console.log('adding url to the queue', href);
+            queue.create('fetchLink', href).priority('high').save();
+          });
         }).catch( err => {
           reject(err);
         })

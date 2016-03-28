@@ -7,8 +7,20 @@ import explore from './explore';
 import home from './home';
 import api from './api';
 import compression from 'compression';
+import kue from 'kue';
+import url from 'url';
 
-const { PORT, NODE_ENV } = process.env;
+const { PORT, NODE_ENV, REDISCLOUD_URL } = process.env;
+
+const redisUrl = url.parse(REDISCLOUD_URL);
+let q = kue.createQueue({
+  prefix: 'q',
+  redis: {
+    port: redisUrl.port,
+    host: redisUrl.hostname
+  }
+});
+
 const app = express();
 
 import webpack from 'webpack';
