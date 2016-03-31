@@ -9,9 +9,15 @@ import { parse } from 'url';
 
 let { ABSTRACT_ENDPOINT } = process.env;
 
-export default (url, req) => {
+export default (url) => {
   return Q.promise((resolve, reject) => {
-    read(url, { cleanRulers: cleanRulers, maxRedirects: 40 }, (err, article, res) => {
+    read(url, {
+      cleanRulers: cleanRulers,
+      maxRedirects: 40,
+      headers: {
+        'User-Agent': 'request'
+      }
+    }, (err, article, res) => {
       if(err){
         return reject(err);
       }
