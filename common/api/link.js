@@ -14,6 +14,7 @@ export default (url) => {
     read(url, {
       cleanRulers: cleanRulers,
       maxRedirects: 40,
+      jar: true,
       headers: {
         'User-Agent': 'request'
       }
