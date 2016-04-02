@@ -53,7 +53,7 @@ class Home extends React.Component {
                 <img src="https://d2w9rnfcy7mm78.cloudfront.net/582128/original_60fe965af53f131eb41882a6fb325b63.png" />
                 <p>Pilgrim is a bookmarklet / web-crawler that aims to provide a better experience for consuming long-form text and exploring related materials on the web.</p>
                 <p>It works by extracting the content of an article, and loading any links clicked inline on the page. As you go deeper into supplemental material, your path is maintained, hopefully giving a reader a better sense of how the information flows.</p>
-                <p>Pilgrim is a project by <a href="https://wwww.are.na">Are.na</a> made possible with generous support from the <a href="http://www.knightfoundation.org/grants/201551668/">Knight Foundation</a></p>
+                <p>Pilgrim is a project by <a href="https://www.are.na">Are.na</a> made possible with generous support from the <a href="http://www.knightfoundation.org/grants/201551668/">Knight Foundation</a></p>
               </div>
             </div>
           </div>
