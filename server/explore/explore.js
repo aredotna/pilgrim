@@ -2,13 +2,10 @@ import { default as React, PropTypes } from 'react';
 import { map } from 'lodash';
 import { connect } from 'react-redux';
 import Link from '../../common/components/link/index';
-import PreviewLink from '../../common/components/link/preview_link';
 import PathItem from '../../common/components/path/index';
 import Loading from '../../common/components/loading/index';
 
 const { APP_URL } = process.env;
-
-// <PreviewLink key={preview_url} url={preview_url} />
 
 class Explore extends React.Component {
 

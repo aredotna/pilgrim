@@ -26,19 +26,24 @@ class Link extends React.Component {
       onLinkLoad
     } = this.props;
 
+    const $linkEl = $(findDOMNode(this));
+
     // handle clicks
-    $(findDOMNode(this)).on('click', 'a:not(.no-intercept)', function(e){
+    $linkEl.on('click', 'a:not(.no-intercept)', function(e){
       e.preventDefault();
-      const href = $(e.currentTarget).attr('href');
+      const $target = $(e.currentTarget);
+      const href = $target.attr('href');
       if(href.indexOf('.pdf') > 0){
         window.open(href, '_blank');
       }else{
+        $linkEl.find('a.is-active').removeClass('is-active');
+        $target.addClass('is-active');
         onLinkClick(href, url);
       }
     });
 
     // handle hovers
-    $(findDOMNode(this)).hover(function(e){
+    $linkEl.hover(function(e){
       e.preventDefault();
       onLinkHover(url);
     }, function(e){
@@ -46,7 +51,7 @@ class Link extends React.Component {
       onLinkUnhover();
     });
 
-    $(findDOMNode(this)).find('a:not(.no-intercept)').hover(function(e){
+    $linkEl.find('a:not(.no-intercept)').hover(function(e){
       e.preventDefault();
       const href = $(e.currentTarget).attr('href');
       onLinkAnchorHover(href);
@@ -55,7 +60,7 @@ class Link extends React.Component {
       onLinkAnchorUnhover();
     });
 
-    // scroll to link
+    // scroll to link (always at the end)
     $('.l-links').animate({ scrollLeft: $('.l-links')[0].scrollWidth }, 100);
   }
   render() {
