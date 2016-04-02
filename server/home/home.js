@@ -1,13 +1,14 @@
 import { default as React, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import snippet from './snippet'
+import snippet from './snippet';
+import examples from './examples';
 
 class Home extends React.Component {
   render() {
     const { dispatch, abstract } = this.props;
 
     return (
-      <div className='l-home'>
+      <div className='l-home home'>
         <h1>Pilgrim</h1>
         <div className="home-content">
           <p style={{textAlign: 'center'}}>Drag the link below to your bookmarks bar:</p>

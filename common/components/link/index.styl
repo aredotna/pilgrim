@@ -11,7 +11,7 @@
   white-space nowrap
 
 .link
-  padding unit
+  padding unit * 3
   list-style-type none
   width column-width
   display inline-block
@@ -37,13 +37,13 @@
 
   &.will-be-chopped
     .link-title a
-      color pink
+      color chopped
     .link-title__link
-      border 1px solid pink
+      border 1px solid chopped
     .link-content
-      color pink
+      color chopped
       a
-        color pink
+        color chopped
       img
         opacity 0.1
 
@@ -76,13 +76,14 @@
 .link-content
   color light-text
   padding-bottom (unit / 2)
-  p(1rem)
+  p(17px)
+  line-height 36px
 
   video, iframe
     max-width 100% !important
 
   p
-    font-size 1rem
+    font-size 17px
 
   img
     max-width 100%
@@ -106,7 +107,7 @@
     ul()
 
   a.is-active
-    background-color #FF0
+    background-color highlight
 
   a[href$=".pdf"]
     cursor alias
