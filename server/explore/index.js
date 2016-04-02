@@ -8,16 +8,9 @@ import { isURL } from 'validator';
 import Explore from './explore.js';
 import render from '../render.js';
 import cachedLink from '../../common/api/cached_link';
-import kue from 'kue';
-import url from 'url';
+import prefetchLinks from '../../common/lib/prefetch_links.js';
 
 let app = express();
-
-const { REDISCLOUD_URL } = process.env;
-let queue = kue.createQueue({
-  prefix: 'q',
-  redis: REDISCLOUD_URL
-});
 
 app.get('/:url', (req, res, next) => {
   const url = req.params.url;
@@ -43,9 +36,7 @@ app.get('/:url', (req, res, next) => {
 
     // Render our boilerplate page with HTML and the initial state set
     res.send(render(html, store.getState(), results.title));
-    take(results.hrefs, 10).map(href => {
-      queue.create('fetchLink', href).priority('high').save();
-    });
+    prefetchLinks(results.hrefs);
   }).catch( err => {
     console.log('ERROR | ', err.stack)
     next()
