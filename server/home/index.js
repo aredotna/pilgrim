@@ -20,7 +20,7 @@ app.get('/', (req, res, next) => {
   );
 
   // Render our boilerplate page with HTML and the initial state set
-  res.send(render(html, store.getState()));
+  res.send(render(html, store.getState(), 'Pilgrim'));
 })
 
 export default app;

@@ -1,20 +1,79 @@
 .l-home
   text-align center
-  margin-top 15%
 
 .home
-  .home-content
-    width 400px
-    margin 0 auto
-    text-align left
-    ul
-      line-height 1.5
-  .home-snippet
-    display block
-    width 200px
-    border 1px solid #aaa
+  &__top
+    background-color #eee
+    &__inner
+      max-width 1200px
+      margin 0 auto
+    &__module
+      display inline-block
+      width 50%
+      padding (unit * 4) unit
+      vertical-align top
+      input[type="text"]
+        background-color #ddd
+        code()
+        color black
+        margin 0 unit
+        width 265px
+        padding 5px
+      h1
+        h2()
+        font-weight normal
+        strong
+          font-weight 700
+      &__go
+        font-family Arial
+        font-size 1.4rem
+        margin-top unit * 2
+        font-weight bold
+        cursor pointer
+        display inline-block
+
+  &__snippet
+    display inline-block
     padding unit
-    margin unit auto
-    text-align center
+    border 1px solid black
     text-decoration none
     color black
+    &__instructions
+      margin-top unit * 1.5
+      font-style italic
+
+  &__bottom
+    &__inner
+      max-width 1200px
+      margin 0 auto
+    &__module
+      display inline-block
+      width 50%
+      padding (unit * 2) (unit * 4)
+      vertical-align top
+      h1
+        h2()
+        font-weight normal
+      &__examples
+        text-align left
+        reset-list()
+        li
+          margin-bottom unit * 2
+        &__title
+          h4()
+          font-weight normal
+          color link-color
+        &__domain
+          domain()
+          color black
+          margin unit 0
+          padding 10px
+          text-decoration none
+      &__about
+        img
+          max-width 100%
+          margin-bottom unit
+          display inline-block
+        p
+          margin-bottom unit
+          text-align left

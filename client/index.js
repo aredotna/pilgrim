@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { isEmpty } from 'lodash';
 import configureStore from '../common/store/configure_store';
 import Explore from '../server/explore/explore.js';
+import Home from '../server/home/home.js';
 
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState);
@@ -14,6 +15,13 @@ if(!isEmpty(initialState.rootLink)){
   render(
     <Provider store={store}>
       <Explore rootLink={initialState.rootLink} />
+    </Provider>,
+    rootElement
+  )
+}else{
+  render(
+    <Provider store={store}>
+      <Home />
     </Provider>,
     rootElement
   )
