@@ -40,6 +40,12 @@ app
   .use(explore)
   .use(home)
   .use(api)
+  .get('/favicon.ico', (req, res) => {
+    res
+      .status(200)
+      .set({ 'Content-Type': 'image/x-icon' })
+      .end();
+  });
 
 const server = http.createServer(app);
 
