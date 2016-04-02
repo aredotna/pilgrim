@@ -72,7 +72,8 @@ class Link extends React.Component {
     });
 
     if(link && !noContent){
-      const content = link.html.replace('Advertisement', '').replace('From Wikipedia, the free encyclopedia', '');
+      const content = link.html;
+
       return (
         <li id={encodeURIComponent(url)} className={linkClasses} data-host={link.host}>
           <div className="link-title">

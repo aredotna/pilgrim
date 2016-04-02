@@ -7,14 +7,8 @@ import explore from './explore';
 import home from './home';
 import api from './api';
 import compression from 'compression';
-import kue from 'kue';
-import url from 'url';
 
-const { PORT, NODE_ENV, REDISCLOUD_URL } = process.env;
-let q = kue.createQueue({
-  prefix: 'q',
-  redis: REDISCLOUD_URL
-});
+const { PORT, NODE_ENV } = process.env;
 
 const app = express();
 
