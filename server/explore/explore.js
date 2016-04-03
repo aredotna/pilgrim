@@ -3,9 +3,8 @@ import { map } from 'lodash';
 import { connect } from 'react-redux';
 import Link from '../../common/components/link/index';
 import PathItem from '../../common/components/path/index';
+import SavedPathLink from '../../common/components/saved_path_link/index';
 import Loading from '../../common/components/loading/index';
-
-const { APP_URL } = process.env;
 
 class Explore extends React.Component {
 
@@ -18,6 +17,7 @@ class Explore extends React.Component {
             {map(path, (url) => <PathItem url={url} key={url} /> )}
           </div>
           <Loading />
+          <SavedPathLink />
         </div>
         <ul className='l-links'>
           {map(path, (url) => <Link key={url} url={url} /> )}

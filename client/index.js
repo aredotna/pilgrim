@@ -11,10 +11,10 @@ const store = configureStore(initialState);
 const rootElement = document.getElementById("root");
 window.__QUEUE__ = [];
 
-if(!isEmpty(initialState.rootLink)){
+if(!isEmpty(initialState.root_link)){
   render(
     <Provider store={store}>
-      <Explore rootLink={initialState.rootLink} />
+      <Explore />
     </Provider>,
     rootElement
   )

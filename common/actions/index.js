@@ -1,5 +1,6 @@
 import { fetchLocalLink } from '../api/local_link';
-import { map } from 'lodash';
+import { saveLocalPath } from '../api/local_path';
+import { map, pick } from 'lodash';
 import { clearQueue } from '../lib/queue';
 
 export const REQUEST_LINK = 'REQUEST_LINK';
@@ -9,6 +10,8 @@ export const HOVER_LINK = 'HOVER_LINK';
 export const UNHOVER_LINK = 'UNHOVER_LINK';
 export const HOVER_LINK_ANCHOR = 'HOVER_LINK_ANCHOR';
 export const UNHOVER_LINK_ANCHOR = 'UNHOVER_LINK_ANCHOR';
+export const REQUEST_PATH_LINK = 'REQUEST_PATH_LINK';
+export const RECEIVE_PATH_LINK = 'RECEIVE_PATH_LINK';
 
 import linkSelector from '../selectors/link';
 
@@ -63,6 +66,32 @@ export function unhoverLinkAnchor(){
   }
 }
 
+export function requestPathLink(){
+  return {
+    type: REQUEST_PATH_LINK
+  }
+}
+
+export function receivePathLink(id){
+  return {
+    type: RECEIVE_PATH_LINK,
+    id: id
+  }
+}
+
+
+export function generatePathLink() {
+  return (dispatch, getState) => {
+    const state = getState();
+    const linkData = pick(state, ['root_link', 'path']);
+    dispatch(requestPathLink())
+    return saveLocalPath(linkData)
+      .then(({ id }) => {
+        dispatch(receivePathLink(id));
+      });
+  }
+}
+
 export function fetchLink(href, parent) {
   return (dispatch, getState) => {
     const state = getState();
@@ -74,8 +103,8 @@ export function fetchLink(href, parent) {
       dispatch(requestLink(href))
       return fetchLocalLink(href)
         .then(link => {
-          dispatch(receiveLink(href, link))
-          dispatch(selectLink(href, link, parent))
+          dispatch(receiveLink(href, link));
+          dispatch(selectLink(href, link, parent));
         });
     }
   }
