@@ -12,7 +12,7 @@ class SavedPathLink extends React.Component {
     if(!path_url){
       return (
         <div className="saved-path-link">
-          <span onClick={onLinkClick}>Generate link</span>
+          <span onClick={onLinkClick}>Link to this path</span>
         </div>
       );
     }else{
