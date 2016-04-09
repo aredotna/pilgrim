@@ -65,7 +65,7 @@ class Link extends React.Component {
   }
   render() {
     const { link, onLinkClick, url, preview_url, will_be_chopped } = this.props;
-    const noContent = link.html.length < 200;
+    const noContent = !link.html || link.html.length < 200 ;
     const title = link.title;
 
     const linkClasses = classNames({

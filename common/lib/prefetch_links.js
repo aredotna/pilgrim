@@ -10,6 +10,6 @@ let queue = kue.createQueue({
 
 export default (hrefs) => {
   take(hrefs, 10).map(href => {
-    queue.create('fetchLink', href).priority('high').save();
+    queue.create('fetchLink', href).priority('high').removeOnComplete( true ).save();
   });
 }
