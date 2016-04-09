@@ -7,6 +7,7 @@ import explore from './explore';
 import home from './home';
 import api from './api';
 import compression from 'compression';
+import kue from 'kue';
 
 const { PORT, NODE_ENV } = process.env;
 
@@ -18,6 +19,14 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackDevelopmentConfig from '../webpack.development.config';
 
 const compiler = webpack(webpackDevelopmentConfig);
+
+kue.Job.rangeByState( 'complete', 0, 10000, 'asc', function( err, jobs ) {
+  jobs.forEach( function( job ) {
+    job.remove( function(){
+      console.log( 'removed job#', job.id );
+    });
+  });
+});
 
 if (NODE_ENV !== 'production') {
   app
