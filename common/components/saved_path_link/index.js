@@ -19,7 +19,7 @@ class SavedPathLink extends React.Component {
       const generatedLink = `${APP_URL}path/${path_url}`;
       return (
         <div className="saved-path-link">
-          <input type="text" value={generatedLink} />
+          <input type="text" value={generatedLink} readOnly="true" />
         </div>
       );
     }
