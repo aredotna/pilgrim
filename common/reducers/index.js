@@ -6,6 +6,7 @@ import loading from './loading';
 import preview_url from './preview_url';
 import hovered_link from './hovered_link';
 import path_url from './path_url';
+import view_mode from './view_mode';
 
 const rootReducer = combineReducers({
   root_link,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   loading,
   preview_url,
   hovered_link,
-  path_url
+  path_url,
+  view_mode
 });
 
 export default rootReducer;

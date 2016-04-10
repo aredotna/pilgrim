@@ -8,7 +8,7 @@ import {
   unhoverLink
 } from '../../actions';
 import classNames from 'classnames';
-import linkSelector from '../../selectors/link'
+import linkSelector from '../../selectors/link';
 
 class PathItem extends React.Component {
   componentDidMount(){

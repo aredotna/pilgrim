@@ -17,7 +17,6 @@ app
     });
   })
   .post('/api/path', (req, res, next) => {
-    console.log('body', req.body);
     savePath(req.body).then((response) => {
       return res.json(response);
     }).catch(err => {

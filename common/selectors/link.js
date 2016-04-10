@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 
-const linksSelector = state => state.links;
-const previewUrlSelector = state => state.preview_url;
-const pathSelector = state => state.path;
-const hoveredLinkSelector = state => state.hovered_link;
-const urlSelector = (state, props) => props.url;
+export const linksSelector = state => state.links;
+export const previewUrlSelector = state => state.preview_url;
+export const pathSelector = state => state.path;
+export const hoveredLinkSelector = state => state.hovered_link;
+export const urlSelector = (state, props) => props.url;
 
 const linkSelector = createSelector(
   linksSelector,
