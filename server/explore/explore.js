@@ -5,11 +5,14 @@ import Link from '../../common/components/link/index';
 import PathItem from '../../common/components/path/index';
 import SavedPathLink from '../../common/components/saved_path_link/index';
 import Loading from '../../common/components/loading/index';
+import PathMap from '../../common/components/path_map/index';
+import ViewMode from '../../common/components/view_mode/index';
 
 class Explore extends React.Component {
 
   render() {
-    const { path, preview_url } = this.props;
+    const { path, preview_url, view_mode } = this.props;
+
     return (
       <div className="l-explore">
         <div className="l-path">
@@ -19,9 +22,26 @@ class Explore extends React.Component {
           <Loading />
           <SavedPathLink />
         </div>
-        <ul className='l-links'>
-          {map(path, (url) => <Link key={url} url={url} /> )}
-        </ul>
+        <div className="l-contents">
+          {(() => {
+            if (view_mode == 'explore') {
+              return (
+                <ul className='l-links'>
+                  {map(path, (url) => <Link key={url} url={url} /> )}
+                </ul>
+              );
+            } else {
+              return (
+                <div className="l-map">
+                  <PathMap />
+                </div>
+              );
+            }
+          })()}
+        </div>
+        <div className="l-view-mode">
+          <ViewMode />
+        </div>
       </div>
     );
   }
@@ -31,7 +51,8 @@ class Explore extends React.Component {
 function mapStateToProps(state) {
   return {
     path: state.path,
-    preview_url: state.preview_url
+    preview_url: state.preview_url,
+    view_mode: state.view_mode
   }
 }
 
