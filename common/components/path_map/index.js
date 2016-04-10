@@ -62,10 +62,10 @@ class PathMap extends React.Component {
       });
 
     nodeEnter.append("text")
-      .attr("x", function(d) {
+      .attr("x", (d) => {
         return d.children || d._children ? -13 : 13; })
       .attr("dy", ".35em")
-      .attr("text-anchor", function(d) {
+      .attr("text-anchor", (d) => {
         return d.children || d._children ? "end" : "start"; })
       .text((d) => {
         if(d.title.length > 50)
