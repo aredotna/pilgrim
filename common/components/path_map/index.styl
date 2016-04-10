@@ -1,0 +1,34 @@
+.l-map
+  clearfix()
+  margin 0
+  padding 0
+  position fixed
+  top topbar-height
+  bottom 0
+  width 100%
+  height 100%
+  overflow scroll
+
+  svg
+    position absolute
+
+.node
+  text
+    action-link()
+    font-size 11px
+    max-width 200px
+    overflow hidden
+    white-space nowrap
+    text-overflow ellipsis
+  circle
+    fill #fff
+    stroke black
+    stroke-width 1px
+  &:hover text
+    fill #000
+
+.link
+  fill none
+  stroke #555
+  stroke-opacity 0.4
+  stroke-width 1.5px
