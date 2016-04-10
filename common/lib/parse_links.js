@@ -12,7 +12,7 @@ export default function(html){
         if(err) return reject(err);
         const links = map(window.document.getElementsByTagName('a'), (el) => { return el.href; });
         const filteredLinks = remove(links, (link) => {
-          return (link.includes('#') || link.includes('.jpg') || link.includes('.jpeg') || link.includes('.gif') || link.includes('.pdf') || link.includes('.png'));
+          return (link.includes("https://en.wikipedia.org/w/index.php") || link.includes('#') || link.includes('.jpg') || link.includes('.jpeg') || link.includes('.gif') || link.includes('.pdf') || link.includes('.png'));
         });
         window.close();
         return resolve(filteredLinks);
