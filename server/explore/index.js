@@ -30,7 +30,8 @@ app
         hovered_link: false,
         path: [url],
         loading: false,
-        path_url: false
+        path_url: false,
+        view_mode: 'explore'
       });
 
       // Render the component to a raw string
@@ -65,7 +66,8 @@ app
           hovered_link: false,
           path: pathData.path,
           loading: false,
-          path_url: id
+          path_url: id,
+          view_mode: 'explore'
         });
 
         // Render the component to a raw string

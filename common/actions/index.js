@@ -12,6 +12,7 @@ export const HOVER_LINK_ANCHOR = 'HOVER_LINK_ANCHOR';
 export const UNHOVER_LINK_ANCHOR = 'UNHOVER_LINK_ANCHOR';
 export const REQUEST_PATH_LINK = 'REQUEST_PATH_LINK';
 export const RECEIVE_PATH_LINK = 'RECEIVE_PATH_LINK';
+export const TOGGLE_VIEW_MODE = 'TOGGLE_VIEW_MODE';
 
 import linkSelector from '../selectors/link';
 
@@ -76,6 +77,13 @@ export function receivePathLink(id){
   return {
     type: RECEIVE_PATH_LINK,
     id: id
+  }
+}
+
+export function toggleViewMode(mode){
+  return {
+    type: TOGGLE_VIEW_MODE,
+    mode: mode
   }
 }
 
