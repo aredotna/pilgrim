@@ -21,7 +21,10 @@
   white-space normal
   vertical-align top
   opacity 0.8
-  // transition 0.3s opacity
+  -webkit-overflow-scrolling touch
+  +mobile()
+    width 100vw
+    padding unit
 
   *
     float none !important
@@ -34,6 +37,8 @@
 
   &:first-child
     margin-left "calc(50% - %s)" % (column-width / 2)
+    +mobile()
+      margin-left 0
 
   &.will-be-chopped
     .link-title a
@@ -62,6 +67,8 @@
     padding unit
   &__domain
     domain()
+  +mobile()
+    font-size 1.4rem
 
 .link-content
   color light-text
