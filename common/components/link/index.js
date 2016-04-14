@@ -11,7 +11,9 @@ import {
   preloadLinks
 } from '../../actions';
 import classNames from 'classnames';
-import linkSelector from '../../selectors/link'
+import Swipeable from 'react-swipeable';
+import linkSelector from '../../selectors/link';
+import scrollToElement from 'scroll-to-element';
 
 class Link extends React.Component {
   componentDidMount(){
@@ -63,6 +65,7 @@ class Link extends React.Component {
     // scroll to link (always at the end)
     $('.l-links').animate({ scrollLeft: $('.l-links')[0].scrollWidth }, 100);
   }
+
   render() {
     const { link, onLinkClick, url, preview_url, will_be_chopped } = this.props;
     const noContent = !link.html || link.html.length < 200 ;
@@ -80,24 +83,28 @@ class Link extends React.Component {
       const content = link.html;
 
       return (
-        <li id={encodeURIComponent(url)} className={linkClasses} data-host={link.host}>
+        <Swipeable
+          className={linkClasses}
+          id={encodeURIComponent(url)}
+          data-host={link.host}
+          >
           <div className="link-title">
             <a className="link-title__link no-intercept" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
             <a className="link-title__domain no-intercept" href={url} target="_blank">{url}</a>
           </div>
           <div className="link-content" dangerouslySetInnerHTML={{__html: content}}></div>
-        </li>
+        </Swipeable>
       );
     }else if(link || noContent){
       return (
-        <li id={url} className={linkClasses}>
+        <Swipeable id={url} className={linkClasses}>
           <div className="link-title">
             <a className="link-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
           </div>
           <div className="link-content__error">
             Pilgrim can't parse any content from this link, try <a href={url} target="_blank" className="no-intercept">opening this page in a normal tab</a>.
           </div>
-        </li>
+        </Swipeable>
       )
     }
   }

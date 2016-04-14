@@ -1,6 +1,7 @@
 import { default as React, PropTypes } from 'react';
 import { map } from 'lodash';
 import { connect } from 'react-redux';
+import ReactSwipe from 'react-swipe';
 import Link from '../../common/components/link/index';
 import PathItem from '../../common/components/path/index';
 import SavedPathLink from '../../common/components/saved_path_link/index';
