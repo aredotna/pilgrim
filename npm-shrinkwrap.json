@@ -1343,10 +1343,30 @@
         }
       }
     },
+    "component-clone": {
+      "version": "0.2.2",
+      "from": "component-clone@0.2.2",
+      "resolved": "https://registry.npmjs.org/component-clone/-/component-clone-0.2.2.tgz"
+    },
     "component-emitter": {
       "version": "1.2.0",
       "from": "component-emitter@>=1.2.0 <1.3.0",
       "resolved": "https://registry.npmjs.org/component-emitter/-/component-emitter-1.2.0.tgz"
+    },
+    "component-raf": {
+      "version": "1.2.0",
+      "from": "component-raf@1.2.0",
+      "resolved": "https://registry.npmjs.org/component-raf/-/component-raf-1.2.0.tgz"
+    },
+    "component-tween": {
+      "version": "1.2.0",
+      "from": "component-tween@1.2.0",
+      "resolved": "https://registry.npmjs.org/component-tween/-/component-tween-1.2.0.tgz"
+    },
+    "component-type": {
+      "version": "1.1.0",
+      "from": "component-type@1.1.0",
+      "resolved": "https://registry.npmjs.org/component-type/-/component-type-1.1.0.tgz"
     },
     "compressible": {
       "version": "2.0.7",
@@ -1679,6 +1699,11 @@
       "version": "2.1.0-0",
       "from": "double-ended-queue@>=2.1.0-0 <3.0.0",
       "resolved": "https://registry.npmjs.org/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz"
+    },
+    "ease-component": {
+      "version": "1.0.0",
+      "from": "ease-component@1.0.0",
+      "resolved": "https://registry.npmjs.org/ease-component/-/ease-component-1.0.0.tgz"
     },
     "ecc-jsbn": {
       "version": "0.1.1",
@@ -4661,10 +4686,10 @@
         }
       }
     },
-    "react-swipe": {
-      "version": "5.0.3",
-      "from": "react-swipe@",
-      "resolved": "https://registry.npmjs.org/react-swipe/-/react-swipe-5.0.3.tgz"
+    "react-swipeable": {
+      "version": "3.1.0",
+      "from": "react-swipeable@*",
+      "resolved": "https://registry.npmjs.org/react-swipeable/-/react-swipeable-3.1.0.tgz"
     },
     "react-transform-catch-errors": {
       "version": "1.0.2",
@@ -4948,6 +4973,16 @@
       "version": "1.1.6",
       "from": "sax@>=1.1.6 <1.2.0",
       "resolved": "https://registry.npmjs.org/sax/-/sax-1.1.6.tgz"
+    },
+    "scroll-to": {
+      "version": "0.0.2",
+      "from": "scroll-to@0.0.2",
+      "resolved": "https://registry.npmjs.org/scroll-to/-/scroll-to-0.0.2.tgz"
+    },
+    "scroll-to-element": {
+      "version": "2.0.0",
+      "from": "scroll-to-element@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/scroll-to-element/-/scroll-to-element-2.0.0.tgz"
     },
     "semver": {
       "version": "5.1.0",
@@ -5274,11 +5309,6 @@
       "from": "svgo@>=0.6.1 <0.7.0",
       "resolved": "https://registry.npmjs.org/svgo/-/svgo-0.6.3.tgz"
     },
-    "swipe-js-iso": {
-      "version": "2.0.3",
-      "from": "swipe-js-iso@*",
-      "resolved": "https://registry.npmjs.org/swipe-js-iso/-/swipe-js-iso-2.0.3.tgz"
-    },
     "sylvester": {
       "version": "0.0.21",
       "from": "sylvester@>=0.0.12",
@@ -5402,6 +5432,11 @@
       "version": "0.4.2",
       "from": "tunnel-agent@>=0.4.1 <0.5.0",
       "resolved": "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.4.2.tgz"
+    },
+    "tween": {
+      "version": "0.9.0",
+      "from": "tween@*",
+      "resolved": "https://registry.npmjs.org/tween/-/tween-0.9.0.tgz"
     },
     "tweetnacl": {
       "version": "0.14.1",
