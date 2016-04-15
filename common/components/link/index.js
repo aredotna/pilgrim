@@ -13,7 +13,6 @@ import {
 import classNames from 'classnames';
 import Swipeable from 'react-swipeable';
 import linkSelector from '../../selectors/link';
-import scrollToElement from 'scroll-to-element';
 
 class Link extends React.Component {
   componentDidMount(){
