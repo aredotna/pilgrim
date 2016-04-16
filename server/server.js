@@ -23,7 +23,7 @@ const compiler = webpack(webpackDevelopmentConfig);
 kue.Job.rangeByState( 'complete', 0, 10000, 'asc', function( err, jobs ) {
   jobs.forEach( function( job ) {
     job.remove( function(){
-      console.log( 'removed job#', job.id );
+      console.log( 'removed job #', job.id );
     });
   });
 });

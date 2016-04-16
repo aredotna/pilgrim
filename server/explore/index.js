@@ -31,6 +31,7 @@ app
         path: [url],
         loading: false,
         path_url: false,
+        scroll_index: 0,
         view_mode: 'explore'
       });
 
@@ -67,6 +68,7 @@ app
           path: pathData.path,
           loading: false,
           path_url: id,
+          scroll_index: pathData.path.length,
           view_mode: 'explore'
         });
 

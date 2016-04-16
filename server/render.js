@@ -9,7 +9,7 @@ export default (html, initialState, title = '') =>  {
     <html>
       <head>
         <title>${title}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
         <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
         <link href="${assets.main.css}" rel="stylesheet" type="text/css"/>
       </head>
@@ -25,10 +25,8 @@ export default (html, initialState, title = '') =>  {
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
           ga('create', 'UA-24572232-7', 'auto');
           ga('send', 'pageview');
-
         </script>
       </body>
     </html>

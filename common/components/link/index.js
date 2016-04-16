@@ -8,7 +8,8 @@ import {
   unhoverLink,
   hoverLinkAnchor,
   unhoverLinkAnchor,
-  preloadLinks
+  preloadLinks,
+  scrollTo,
 } from '../../actions';
 import classNames from 'classnames';
 import Swipeable from 'react-swipeable';
@@ -22,8 +23,8 @@ class Link extends React.Component {
       onLinkHover,
       onLinkUnhover,
       onLinkAnchorHover,
+      index,
       onLinkAnchorUnhover,
-      link,
       onLinkLoad
     } = this.props;
 
@@ -39,7 +40,7 @@ class Link extends React.Component {
       }else{
         $linkEl.find('a.is-active').removeClass('is-active');
         $target.addClass('is-active');
-        onLinkClick(href, url);
+        onLinkClick(href, url, index);
       }
     });
 
@@ -60,13 +61,19 @@ class Link extends React.Component {
       e.preventDefault();
       onLinkAnchorUnhover();
     });
-
-    // scroll to link (always at the end)
-    $('.l-links').animate({ scrollLeft: $('.l-links')[0].scrollWidth }, 100);
   }
 
   render() {
-    const { link, onLinkClick, url, preview_url, will_be_chopped } = this.props;
+    const {
+      link,
+      onLinkClick,
+      onSwipeLeft,
+      onSwipeRight,
+      url,
+      index,
+      preview_url,
+      will_be_chopped
+    } = this.props;
     const noContent = !link.html || link.html.length < 200 ;
     const title = link.title;
 
@@ -86,6 +93,8 @@ class Link extends React.Component {
           className={linkClasses}
           id={encodeURIComponent(url)}
           data-host={link.host}
+          onSwipedLeft={() => onSwipeLeft(index)}
+          onSwipedRight={() => onSwipeRight(index)}
           >
           <div className="link-title">
             <a className="link-title__link no-intercept" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
@@ -111,23 +120,29 @@ class Link extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLinkClick: (url, parent) => {
-      dispatch(fetchLink(url, parent))
+    onLinkClick: (url, parent, index) => {
+      dispatch(fetchLink(url, parent, index));
     },
     onLinkHover: (url) => {
-      dispatch(hoverLink(url))
+      dispatch(hoverLink(url));
     },
     onLinkUnhover: () => {
-      dispatch(unhoverLink())
+      dispatch(unhoverLink());
     },
     onLinkAnchorHover: (href) => {
-      dispatch(hoverLinkAnchor(href))
+      dispatch(hoverLinkAnchor(href));
     },
     onLinkAnchorUnhover: () => {
-      dispatch(unhoverLinkAnchor())
+      dispatch(unhoverLinkAnchor());
     },
     onLinkLoad: (url) => {
-      dispatch(preloadLinks(url))
+      dispatch(preloadLinks(url));
+    },
+    onSwipeRight: (index) => {
+      dispatch(scrollTo(index + 1));
+    },
+    onSwipeLeft: (index) => {
+      dispatch(scrollTo(index - 1));
     }
   }
 }

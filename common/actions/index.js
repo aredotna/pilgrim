@@ -13,6 +13,7 @@ export const UNHOVER_LINK_ANCHOR = 'UNHOVER_LINK_ANCHOR';
 export const REQUEST_PATH_LINK = 'REQUEST_PATH_LINK';
 export const RECEIVE_PATH_LINK = 'RECEIVE_PATH_LINK';
 export const TOGGLE_VIEW_MODE = 'TOGGLE_VIEW_MODE';
+export const SCROLL_TO = 'SCROLL_TO';
 
 import linkSelector from '../selectors/link';
 
@@ -32,12 +33,13 @@ function receiveLink(href, link) {
   }
 }
 
-function selectLink(href, link, parent) {
+function selectLink(href, link, parent, index) {
   return {
     type: SELECT_LINK,
     href: href,
     link: link,
-    parent: parent
+    parent: parent,
+    index: index
   }
 }
 
@@ -87,6 +89,12 @@ export function toggleViewMode(mode){
   }
 }
 
+export function scrollTo(index){
+  return {
+    type: SCROLL_TO,
+    index: index
+  }
+}
 
 export function generatePathLink() {
   return (dispatch, getState) => {
@@ -100,7 +108,7 @@ export function generatePathLink() {
   }
 }
 
-export function fetchLink(href, parent) {
+export function fetchLink(href, parent, index) {
   return (dispatch, getState) => {
     const state = getState();
     let link = linkSelector(state, { url: href });
@@ -112,8 +120,8 @@ export function fetchLink(href, parent) {
       return fetchLocalLink(href)
         .then(link => {
           dispatch(receiveLink(href, link));
-          dispatch(selectLink(href, link, parent));
-        });
+          dispatch(selectLink(href, link, parent, index + 1));
+        }).catch((e) => { console.log('error', e) });
     }
   }
 }
