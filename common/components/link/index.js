@@ -139,10 +139,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(preloadLinks(url));
     },
     onSwipeRight: (index) => {
-      dispatch(scrollTo(index + 1));
+      dispatch(scrollTo(index - 1));
     },
     onSwipeLeft: (index) => {
-      dispatch(scrollTo(index - 1));
+      dispatch(scrollTo(index + 1));
     }
   }
 }
