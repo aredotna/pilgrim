@@ -105,7 +105,12 @@ class Link extends React.Component {
       );
     }else if(link || noContent){
       return (
-        <Swipeable id={url} className={linkClasses}>
+        <Swipeable
+          id={url}
+          className={linkClasses}
+          onSwipedLeft={() => onSwipeLeft(index)}
+          onSwipedRight={() => onSwipeRight(index)}
+          >
           <div className="link-title">
             <a className="link-title__link" href={url} target="_blank" dangerouslySetInnerHTML={{__html: title}}></a>
           </div>

@@ -20,9 +20,9 @@ class Explore extends React.Component {
           <div className="path-list">
             {map(path, (url) => <PathItem url={url} key={url} /> )}
           </div>
-          <Loading />
           <SavedPathLink />
         </div>
+        <Loading />
         <div className="l-contents">
           {(() => {
             if (view_mode == 'explore') {
