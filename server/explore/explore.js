@@ -7,6 +7,7 @@ import SavedPathLink from '../../common/components/saved_path_link/index';
 import Loading from '../../common/components/loading/index';
 import PathMap from '../../common/components/path_map/index';
 import ViewMode from '../../common/components/view_mode/index';
+import ScrollPosition from '../../common/components/scroll_position/index';
 
 class Explore extends React.Component {
 
@@ -19,9 +20,9 @@ class Explore extends React.Component {
           <div className="path-list">
             {map(path, (url) => <PathItem url={url} key={url} /> )}
           </div>
-          <Loading />
           <SavedPathLink />
         </div>
+        <Loading />
         <div className="l-contents">
           {(() => {
             if (view_mode == 'explore') {
@@ -42,6 +43,7 @@ class Explore extends React.Component {
         <div className="l-view-mode">
           <ViewMode />
         </div>
+        <ScrollPosition />
       </div>
     );
   }

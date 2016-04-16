@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { indexOf } from 'lodash';
 
 export const linksSelector = state => state.links;
 export const previewUrlSelector = state => state.preview_url;
@@ -16,6 +17,7 @@ const linkSelector = createSelector(
     return {
       link: links[url],
       preview_url: preview_url,
+      index: indexOf(path, url),
       will_be_chopped: hovered_link && hovered_link != url && (path.indexOf(url) > path.indexOf(preview_url))
     }
   }
