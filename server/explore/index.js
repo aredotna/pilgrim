@@ -68,7 +68,7 @@ app
           path: pathData.path,
           loading: false,
           path_url: id,
-          scroll_index: pathData.path.length,
+          scroll_index: pathData.path.length - 1,
           view_mode: 'explore'
         });
 
