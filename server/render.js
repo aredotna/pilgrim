@@ -17,10 +17,10 @@ export default (html, initialState, title = '') =>  {
         <!-- Social Media -->
         <meta property="og:type" content="website" /> <!-- "website" is default, so only use this if other -->
         <meta property="og:url" content="http://pilgrim.are.na" />
-        <meta property="og:title" content="Pilgrim by Are.na" />
+        <meta property="og:title" content="Pilgrim / ${title}" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@aredotna"/>
-        <meta name="twitter:title" content="Pilgrim by Are.na" />
+        <meta name="twitter:title" content="Pilgrim / ${title}" />
         <meta name="twitter:description" content="Pilgrim is a bookmarklet / web-crawler that aims to provide a better experience for consuming long-form text and exploring related materials on the web." />
         <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
         <link href="${assets.main.css}" rel="stylesheet" type="text/css"/>
