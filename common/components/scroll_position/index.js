@@ -2,11 +2,7 @@ import { default as React, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 class ScrollPosition extends React.Component {
-  shouldComponentUpdate(){
-    return true;
-  }
-  componentDidUpdate(){
-    const { scroll_index } = this.props;
+  scrollToIndex(scroll_index){
     setTimeout(() => {
       if (scroll_index > -1 && $('.link').eq(scroll_index).length) {
         $('.l-links').animate({
@@ -14,6 +10,20 @@ class ScrollPosition extends React.Component {
         }, 100);
       }
     }, 10);
+  }
+
+  shouldComponentUpdate(){
+    return true;
+  }
+
+  componentDidUpdate(){
+    const { scroll_index } = this.props;
+    this.scrollToIndex(scroll_index);
+  }
+
+  componentDidMount(){
+    const { scroll_index } = this.props;
+    this.scrollToIndex(scroll_index);
   }
 
   render() {
