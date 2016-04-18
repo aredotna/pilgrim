@@ -1,0 +1,29 @@
+.l-save-modal
+  position fixed
+  top topbar-height
+  right 0px
+  width 350px
+  height "calc(100% - %s)" % topbar-height
+  background-color white
+  display none
+  padding unit
+  border-left 2px solid #ccc
+
+  &.is-active
+    display block
+
+.save-modal
+  &__close
+    action-link()
+    position absolute
+    top unit / 2
+    right unit
+    font-size 2rem
+    height unit * 2
+    width unit * 2
+    text-align center
+    line-height unit * 2
+    border-radius unit * 2
+
+    &:hover
+      background-color #eee

@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import Link from '../../common/components/link/index';
 import PathItem from '../../common/components/path/index';
 import SavedPathLink from '../../common/components/saved_path_link/index';
+import SavePathContentsLink from '../../common/components/save_path_contents/index';
 import Loading from '../../common/components/loading/index';
 import PathMap from '../../common/components/path_map/index';
 import ViewMode from '../../common/components/view_mode/index';
 import ScrollPosition from '../../common/components/scroll_position/index';
+import SaveContentsModal from '../../common/components/save_modal/index';
 
 class Explore extends React.Component {
 
@@ -21,6 +23,7 @@ class Explore extends React.Component {
             {map(path, (url) => <PathItem url={url} key={url} /> )}
           </div>
           <SavedPathLink />
+          <SavePathContentsLink />
         </div>
         <Loading />
         <div className="l-contents">
@@ -44,6 +47,7 @@ class Explore extends React.Component {
           <ViewMode />
         </div>
         <ScrollPosition />
+        <SaveContentsModal />
       </div>
     );
   }

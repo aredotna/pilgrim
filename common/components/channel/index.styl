@@ -1,0 +1,40 @@
+.channel
+  display flex
+  sans()
+  margin (unit / 2) 0
+  padding (unit / 1.5)
+  border 1px solid black
+  font-size 12px
+  cursor pointer
+  position relative
+
+  &.is-selected
+    &:after
+      position absolute
+      right 6px
+      top 12px
+      content "✔"
+
+    &:hover:after
+      content "✕"
+
+  span:nth-child(2)
+    margin 0 5px
+
+  &__public
+    color public
+    border-color public
+    background-color alpha(public, 0.1)
+
+  &__private
+    color private
+    border-color private
+    background-color alpha(private, 0.1)
+
+  &__closed
+    color closed
+    border-color closed
+    background-color alpha(closed, 0.1)
+
+  &:hover
+    opacity 0.8
