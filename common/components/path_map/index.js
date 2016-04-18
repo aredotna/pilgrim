@@ -11,7 +11,13 @@ import {
 
 class PathMap extends React.Component {
   render() {
-    const { path, root_link, links, dispatch } = this.props;
+    const {
+      path,
+      root_link,
+      links,
+      dispatch
+    } = this.props;
+
     let svg = ReactFauxDOM.createElement('svg');
 
     const sizes = {

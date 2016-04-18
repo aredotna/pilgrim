@@ -3,7 +3,7 @@ import { fetchLocalLink } from '../api/local_link';
 import { saveLocalPath } from '../api/local_path';
 import { queryChannels } from '../api/query_channels';
 import { postConnections } from '../api/post_connections';
-import { map, pick, filter } from 'lodash';
+import { map, pick, filter, indexOf } from 'lodash';
 import { clearQueue } from '../lib/queue';
 
 export const REQUEST_LINK = 'REQUEST_LINK';
@@ -205,7 +205,8 @@ export function fetchLink(href, parent, index) {
     let link = linkSelector(state, { url: href });
     clearQueue();
     if(link.link){
-      return dispatch(selectLink(href, link.link, parent));
+      let index = indexOf(state.path, href);
+      return dispatch(selectLink(href, link.link, parent, index));
     } else {
       dispatch(requestLink(href))
       return fetchLocalLink(href)
