@@ -31,6 +31,8 @@ app
         path: [url],
         loading: false,
         path_url: false,
+        current_user: req.user,
+        save_modal: false,
         scroll_index: 0,
         view_mode: 'explore'
       });
@@ -55,6 +57,7 @@ app
     getPath(id).then( pathData => {
       Q.all(map(pathData.path, url => cachedLink(url))).then((results) => {
         let links = {};
+
         map(pathData.path, (url)=>{
           let linkData = find(results, { url: url });
           links[url] = linkData;
@@ -67,6 +70,8 @@ app
           hovered_link: false,
           path: pathData.path,
           loading: false,
+          current_user: req.user,
+          save_modal: false,
           path_url: id,
           scroll_index: pathData.path.length - 1,
           view_mode: 'explore'

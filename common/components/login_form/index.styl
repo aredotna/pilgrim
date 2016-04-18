@@ -1,0 +1,24 @@
+.l-login-form
+  display flex
+  align-items center
+  justify-content center
+  height 100%
+  text-align center
+
+  input, button
+    display block
+    margin unit 0
+    outline none
+
+  input[type='email'], input[type='password']
+    padding (unit / 2)
+    width 300px
+
+  button
+    button: black
+    font-family 'Arial', sans-serif
+    border-radius 0
+
+    &:disabled
+      button-disabled()
+

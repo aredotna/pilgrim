@@ -1,15 +1,21 @@
 import http from 'http';
 import path from 'path';
 import express from 'express';
-import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import explore from './explore';
 import home from './home';
 import api from './api';
 import compression from 'compression';
 import kue from 'kue';
+import arenaPassport from  'arena-passport';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import session from 'cookie-session';
+import CurrentUser from '../common/lib/current_user'
 
-const { PORT, NODE_ENV } = process.env;
+import config from '../config.js';
+
+const { PORT, NODE_ENV, APP_URL } = process.env;
 
 const app = express();
 
@@ -42,6 +48,23 @@ app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .use(morgan('combined'))
+
+app.keys = ['foo']
+
+app
+  // Auth
+  .use(cookieParser())
+  .use(session({
+    secret: config.SESSION_SECRET,
+    domain: config.COOKIE_DOMAIN,
+    key: config.SESSION_COOKIE_KEY,
+    maxage: config.SESSION_COOKIE_MAX_AGE,
+  }))
+  .use(arenaPassport({
+    SECURE_ARENA_URL: config.SECURE_ARENA_URL,
+    APP_URL: APP_URL,
+    CurrentUser: CurrentUser
+  }))
 
   // Apps
   .use(compression())

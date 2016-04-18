@@ -7,8 +7,6 @@ import cleanRulers from '../lib/clean_rulers';
 import embed from 'embed-video';
 import { parse } from 'url';
 
-let { ABSTRACT_ENDPOINT } = process.env;
-
 export default (url) => {
   return Q.promise((resolve, reject) => {
     read(url, {
