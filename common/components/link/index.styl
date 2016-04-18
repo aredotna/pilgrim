@@ -13,7 +13,7 @@
     top 0px
 
 .link
-  padding (unit) (unit * 3)
+  padding unit
   width column-width
   display inline-block
   height 100%
@@ -21,9 +21,10 @@
   overflow-x hidden
   white-space normal
   vertical-align top
-  opacity 0.8
+  opacity 0.2
   -webkit-overflow-scrolling touch
   +mobile()
+    opacity 1
     width 100vw
     padding unit
 
@@ -74,14 +75,16 @@
 .link-content
   color light-text
   padding-bottom (unit / 2)
-  p(17px)
+  p(19px)
+  line-height 34px
   margin 1.25em 0
 
   video, iframe
     max-width 100% !important
 
   p, span
-    p(17px)
+    p(19px)
+    line-height 34px
     margin 1.25em 0
 
   img
@@ -91,10 +94,10 @@
   figure
     margin 0
 
-  figcaption
+  figcaption, figcaption span
     background-color #eee
     padding (unit/2)
-    font-size 12px
+    font-size 12px !important
     line-height 18px
     margin-bottom unit * 2
 
@@ -106,6 +109,8 @@
   ul
     ul()
 
+  a
+    cursor e-resize
   a.is-active
     background-color highlight
 

@@ -22,7 +22,7 @@ export default (html, initialState, title = '') =>  {
         <meta name="twitter:site" content="@aredotna"/>
         <meta name="twitter:title" content="Pilgrim / ${title}" />
         <meta name="twitter:description" content="Pilgrim is a bookmarklet / web-crawler that aims to provide a better experience for consuming long-form text and exploring related materials on the web." />
-        <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700' rel='stylesheet' type='text/css'>
         <link href="${assets.main.css}" rel="stylesheet" type="text/css"/>
       </head>
       <body>
