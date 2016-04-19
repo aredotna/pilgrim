@@ -1,6 +1,6 @@
 {
   "name": "pilgrim",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Bookmarklet + web crawler",
   "main": "index.js",
   "engines": {
