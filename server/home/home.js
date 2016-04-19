@@ -12,51 +12,49 @@ class Home extends React.Component {
 
     return (
       <div className='l-home home'>
-        <div className="home__top">
-          <div className="home__top__inner">
-            <div className="home__top__module">
-              <h1>
-                Open
-                <input id="open-in-pilgrim" type="text" placeholder="enter URL here"/>
-                in <strong>Pilgrim</strong>
-              </h1>
-              <span className="home__top__module__go" onClick={onSubmitClick}>Go →</span>
+        <div className="home__module">
+          <h1 className="home__module__form">
+            Open
+            <input id="open-in-pilgrim" type="text" placeholder="enter URL here"/>
+            in <strong>Pilgrim</strong>
+            <span className="home__module__go" onClick={onSubmitClick}>→</span>
+          </h1>
+
+          <h1 className="home__module__bm">
+            Or drag the
+            <div className="home__module__bookmarklet">
+              <span className="home__module__bookmarklet__display">bookmarklet</span>
+              <a href={snippet} className="home__module__bookmarklet__snippet">Open in Pilgrim</a>
             </div>
-            <div className="home__top__module">
-              <h1> Or try <strong>Pilgrim</strong> in bookmarklet form</h1>
-              <a href={snippet} className="home__snippet">Open in Pilgrim</a>
-              <div className="home__snippet__instructions">
-                (drag the link above to your bookmarks bar ↑)
-              </div>
-            </div>
+            to your bookmarks bar ^
+          </h1>
+        </div>
+        <div className="home__module">
+          <h1>What's <strong>Pilgrim</strong>, pilgrim?</h1>
+          <div className="home__module__about">
+            <p>Pilgrim is a bookmarklet / web-crawler that aims to provide a better experience for consuming long-form text and exploring related materials on the web.</p>
+            <p>It works by extracting the content of an article, and loading any links clicked inline on the page. As you go deeper into supplemental material, your path is maintained, giving a reader a better sense of how the relevant information flows.</p>
+            <p>Pilgrim is an <a href="http://github.com/arenahq/pilgrim">open source</a> project by <a href="https://www.are.na">Are.na</a> initiated with generous support from the <a href="http://www.knightfoundation.org/grants/201551668/">Knight Foundation Prototype Fund</a></p>
           </div>
         </div>
-        <div className="home__bottom">
-          <div className="home__bottom__inner">
-            <div className="home__bottom__module">
-              <h1>Examples</h1>
-              <ul className="home__bottom__module__examples">
-                {map(examples, ({url, title}) => {
-                  let endcodedUrl = `${APP_URL}${encodeURIComponent(url)}`;
-                  return (
-                    <li key={url}>
-                      <a className="home__bottom__module__examples__title" href={endcodedUrl}>{title}</a>
-                      <a className="home__bottom__module__examples__domain" href={endcodedUrl}>{url}</a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div className="home__bottom__module">
-              <h1>About</h1>
-              <div className="home__bottom__module__about">
-                <img src="https://d2w9rnfcy7mm78.cloudfront.net/582128/original_60fe965af53f131eb41882a6fb325b63.png" />
-                <p>Pilgrim is a bookmarklet / web-crawler that aims to provide a better experience for consuming long-form text and exploring related materials on the web.</p>
-                <p>It works by extracting the content of an article, and loading any links clicked inline on the page. As you go deeper into supplemental material, your path is maintained, hopefully giving a reader a better sense of how the information flows.</p>
-                <p>Pilgrim is a project by <a href="https://www.are.na">Are.na</a> made possible with generous support from the <a href="http://www.knightfoundation.org/grants/201551668/">Knight Foundation</a></p>
-              </div>
-            </div>
-          </div>
+        <div className="home__module">
+          <h1>Example articles</h1>
+          <ul className="home__module__examples">
+            {map(examples, ({url, title}) => {
+              let endcodedUrl = `${APP_URL}${encodeURIComponent(url)}`;
+              return (
+                <li key={url}>
+                  <a className="home__module__examples__title" href={endcodedUrl}>{title}</a>
+                  <a className="home__module__examples__domain" href={endcodedUrl}>{url}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="home__module home__module__screenshots">
+          <h1>Screenshots</h1>
+          <img src="https://d2w9rnfcy7mm78.cloudfront.net/594476/original_d147f89e29ea39e4ac3f799fdf2fb23c.png" />
+          <img src="https://d2w9rnfcy7mm78.cloudfront.net/594477/original_2c67d32dc6092b16b2d5d5233fca8c4f.png" />
         </div>
       </div>
     );
