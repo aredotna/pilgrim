@@ -56,6 +56,12 @@ class Home extends React.Component {
           <img src="https://d2w9rnfcy7mm78.cloudfront.net/594476/original_d147f89e29ea39e4ac3f799fdf2fb23c.png" />
           <img src="https://d2w9rnfcy7mm78.cloudfront.net/594477/original_2c67d32dc6092b16b2d5d5233fca8c4f.png" />
         </div>
+        <div className="home__module">
+          <h1>Feedback</h1>
+          <div className="home__module__about">
+            <p>Pilgrim is an experiment and an ongoing work in progress. Please, by all means, <a href="https://docs.google.com/forms/d/1rMMk8NMegcqp9LbIPin_gsFudijB2NN6R5xQ1TU9a4Q/viewform">leave us some feedback</a>.</p>
+          </div>
+        </div>
       </div>
     );
   }
