@@ -14,6 +14,7 @@ export default (path, links) => {
       name: url,
       title: title,
       parent: path[index - 1],
+      index: index,
       active: active,
       children: []
     };
@@ -32,6 +33,7 @@ export default (path, links) => {
             name: childUrl,
             title: title,
             parent: path[index - 1],
+            index: index,
             children: []
           });
         }

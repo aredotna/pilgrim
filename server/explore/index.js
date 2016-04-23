@@ -26,7 +26,7 @@ app
         links: {
           [url]: results
         },
-        preview_url: false,
+        highlighted_link: url,
         hovered_link: false,
         path: [url],
         loading: false,
@@ -66,7 +66,7 @@ app
         const store = configureStore({
           root_link: pathData.root_link,
           links: links,
-          preview_url: false,
+          highlighted_link: pathdata.path[pathData.path.length - 1],
           hovered_link: false,
           path: pathData.path,
           loading: false,

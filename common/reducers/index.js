@@ -4,7 +4,7 @@ import root_link from './root_link';
 import path from './path';
 import links from './links';
 import loading from './loading';
-import preview_url from './preview_url';
+import highlighted_link from './highlighted_link';
 import hovered_link from './hovered_link';
 import path_url from './path_url';
 import scroll_index from './scroll_index';
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   path,
   links,
   loading,
-  preview_url,
+  highlighted_link,
   hovered_link,
   path_url,
   scroll_index,

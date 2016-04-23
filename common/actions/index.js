@@ -11,8 +11,7 @@ export const RECEIVE_LINK = 'RECEIVE_LINK';
 export const START_LOADING = 'START_LOADING';
 export const STOP_LOADING = 'STOP_LOADING';
 export const SELECT_LINK = 'SELECT_LINK';
-export const HOVER_LINK = 'HOVER_LINK';
-export const UNHOVER_LINK = 'UNHOVER_LINK';
+export const HIGHLIGHT_LINK = 'HIGHLIGHT_LINK';
 export const HOVER_LINK_ANCHOR = 'HOVER_LINK_ANCHOR';
 export const UNHOVER_LINK_ANCHOR = 'UNHOVER_LINK_ANCHOR';
 export const REQUEST_PATH_LINK = 'REQUEST_PATH_LINK';
@@ -54,16 +53,10 @@ function selectLink(href, link, parent, index) {
   }
 }
 
-export function hoverLink(href) {
+export function highlightLink(href) {
   return {
-    type: HOVER_LINK,
+    type: HIGHLIGHT_LINK,
     href: href
-  }
-}
-
-export function unhoverLink() {
-  return {
-    type: UNHOVER_LINK
   }
 }
 
@@ -205,14 +198,16 @@ export function fetchLink(href, parent, index) {
     let link = linkSelector(state, { url: href });
     clearQueue();
     if(link.link){
-      let index = indexOf(state.path, href);
-      return dispatch(selectLink(href, link.link, parent, index));
+      let index = indexOf(state.path, parent);
+      dispatch(selectLink(href, link.link, parent, index + 1));
+      return dispatch(highlightLink(href));
     } else {
       dispatch(requestLink(href))
       return fetchLocalLink(href)
         .then(link => {
           dispatch(receiveLink(href, link));
           dispatch(selectLink(href, link, parent, index + 1));
+          return dispatch(highlightLink(href));
         }).catch((e) => { console.log('error', e) });
     }
   }

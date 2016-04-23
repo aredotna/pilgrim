@@ -2,46 +2,30 @@ import { default as React, PropTypes } from 'react';
 import { map } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
-import {
-  fetchLink,
-  hoverLink,
-  unhoverLink
-} from '../../actions';
+import { scrollTo, highlightLink, toggleViewMode } from '../../actions';
 import classNames from 'classnames';
 import linkSelector from '../../selectors/link';
 
 class PathItem extends React.Component {
   componentDidMount(){
     const {
-      onLinkClick,
       url,
-      onLinkHover,
-      onLinkUnhover,
-      onLinkAnchorHover,
-      onLinkAnchorUnhover,
+      onPathItemClick,
+      index
     } = this.props;
 
     $('.path-list').animate({ scrollLeft: $('.path-list')[0].scrollWidth }, 100);
-
-    $(findDOMNode(this)).hover(function(e){
-      e.preventDefault();
-      onLinkHover(url);
-    }, function(e){
-      e.preventDefault();
-      onLinkUnhover();
-    });
-
   }
   render() {
-    const { link, onPathItemClick, url, preview_url, will_be_chopped } = this.props;
+    const { link, index, onPathItemClick, url, highlighted_link, will_be_chopped } = this.props;
     const itemClasses = classNames({
       'path-list__item': true,
-      'is-hovered': (url == preview_url),
+      'is-hovered': (url == highlighted_link),
       'will-be-chopped': will_be_chopped
     });
 
     return (
-      <div className={itemClasses} key={url} onClick={() => onPathItemClick(url)}>
+      <div className={itemClasses} key={url} onClick={() => onPathItemClick(index, url)}>
         <div
           className="path-list__item__wrap"
           dangerouslySetInnerHTML={{__html: link.title}} />
@@ -52,15 +36,11 @@ class PathItem extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPathItemClick: (url) => {
-      $('.l-links').animate({ scrollLeft: $('[id="'+encodeURIComponent(url)+'"]').offset().left }, 100);
+    onPathItemClick: (index, url) => {
+      dispatch(scrollTo(index));
+      dispatch(highlightLink(url));
+      dispatch(toggleViewMode('explore'));
     },
-    onLinkHover: (href) => {
-      dispatch(hoverLink(href))
-    },
-    onLinkUnhover: () => {
-      dispatch(unhoverLink())
-    }
   }
 }
 

@@ -2,31 +2,37 @@
   clearfix()
   margin 0
   padding 0
-  position absolute
+  position fixed
   top topbar-height
   bottom 0
   width 100%
-  overflow-x scroll
+  overflow-x hidden
   overflow-y hidden
   white-space nowrap
+  margin-right 100%
+  opacity 0
+
+  &.is-active
+    opacity 1
+
   +mobile()
     top 0px
 
 .link
+  display inline-block
   padding unit (unit * 2)
   width column-width
-  display inline-block
   height 100%
   overflow-y scroll
-  overflow-x hidden
   white-space normal
   vertical-align top
   opacity 0.2
-  -webkit-overflow-scrolling touch
+  zoom 1
   +mobile()
     opacity 1
     width 100vw
     padding unit
+    -webkit-overflow-scrolling touch
 
   *
     float none !important
@@ -42,11 +48,14 @@
     +mobile()
       margin-left 0
 
+  &:last-child
+    margin-right "calc(50% - %s)" % ((column-width + (unit * 2)) / 2)
+    +mobile()
+      margin-right 0
+
   &.will-be-chopped
     .link-title a
       color chopped
-    .link-title__link
-      border 1px solid chopped
     .link-content
       color chopped
       a
@@ -74,7 +83,7 @@
 
 .link-content
   color light-text
-  padding-bottom (unit / 2)
+  min-height 100%
   p(19px)
   margin 1.25em 0
 
@@ -110,6 +119,15 @@
   ul
     ul()
 
+  blockquote
+    blockquote(#ccc)
+    font-size 19px
+    line-height 34px
+    p
+      sans()
+      font-size 16px
+      line-height 30px
+
   a
     cursor e-resize
   a.is-active
@@ -138,6 +156,7 @@
     border-radius 50px
 
   font-weight normal
+  padding-bottom 100%
 
 .link-image
   img

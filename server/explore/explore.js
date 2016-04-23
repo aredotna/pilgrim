@@ -10,11 +10,18 @@ import PathMap from '../../common/components/path_map/index';
 import ViewMode from '../../common/components/view_mode/index';
 import ScrollPosition from '../../common/components/scroll_position/index';
 import SaveContentsModal from '../../common/components/save_modal/index';
+import ArrowNav from '../../common/components/arrow_nav/index';
+import classNames from 'classnames';
 
 class Explore extends React.Component {
 
   render() {
     const { path, preview_url, view_mode } = this.props;
+
+    const linkClasses = classNames({
+      'l-links': true,
+      'is-active': (view_mode == 'explore'),
+    });
 
     return (
       <div className="l-explore">
@@ -27,14 +34,11 @@ class Explore extends React.Component {
         </div>
         <Loading />
         <div className="l-contents">
+          <ul className={linkClasses}>
+            {map(path, (url) => <Link key={url} url={url} /> )}
+          </ul>
           {(() => {
-            if (view_mode == 'explore') {
-              return (
-                <ul className='l-links'>
-                  {map(path, (url) => <Link key={url} url={url} /> )}
-                </ul>
-              );
-            } else {
+            if (view_mode == 'map') {
               return (
                 <div className="l-map">
                   <PathMap />
@@ -43,6 +47,7 @@ class Explore extends React.Component {
             }
           })()}
         </div>
+        <ArrowNav />
         <div className="l-view-mode">
           <ViewMode />
         </div>
@@ -57,7 +62,7 @@ class Explore extends React.Component {
 function mapStateToProps(state) {
   return {
     path: state.path,
-    preview_url: state.preview_url,
+    highlighted_link: state.highlighted_link,
     view_mode: state.view_mode
   }
 }

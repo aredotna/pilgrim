@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import {
   fetchLink,
-  hoverLink,
+  highlightLink,
   unhoverLink,
   hoverLinkAnchor,
   unhoverLinkAnchor,
@@ -20,10 +20,8 @@ class Link extends React.Component {
     const {
       onLinkClick,
       url,
-      onLinkHover,
-      onLinkUnhover,
-      onLinkAnchorHover,
       index,
+      onLinkAnchorHover,
       onLinkAnchorUnhover,
       onLinkLoad
     } = this.props;
@@ -44,15 +42,6 @@ class Link extends React.Component {
       }
     });
 
-    // handle hovers
-    $linkEl.hover(function(e){
-      e.preventDefault();
-      onLinkHover(url);
-    }, function(e){
-      e.preventDefault();
-      onLinkUnhover();
-    });
-
     $linkEl.find('a:not(.no-intercept)').hover(function(e){
       e.preventDefault();
       const href = $(e.currentTarget).attr('href');
@@ -71,7 +60,7 @@ class Link extends React.Component {
       onSwipeRight,
       url,
       index,
-      preview_url,
+      highlighted_link,
       will_be_chopped
     } = this.props;
     const noContent = !link.html || link.html.length < 200 ;
@@ -81,7 +70,7 @@ class Link extends React.Component {
       'link': true,
       'is-expanded': link,
       'has-no-content': noContent,
-      'is-hovered': (url == preview_url),
+      'is-hovered': (url == highlighted_link),
       'will-be-chopped': will_be_chopped
     });
 
@@ -128,20 +117,11 @@ const mapDispatchToProps = (dispatch) => {
     onLinkClick: (url, parent, index) => {
       dispatch(fetchLink(url, parent, index));
     },
-    onLinkHover: (url) => {
-      dispatch(hoverLink(url));
-    },
-    onLinkUnhover: () => {
-      dispatch(unhoverLink());
-    },
     onLinkAnchorHover: (href) => {
-      dispatch(hoverLinkAnchor(href));
+      // dispatch(hoverLinkAnchor(href));
     },
     onLinkAnchorUnhover: () => {
-      dispatch(unhoverLinkAnchor());
-    },
-    onLinkLoad: (url) => {
-      dispatch(preloadLinks(url));
+      // dispatch(unhoverLinkAnchor());
     },
     onSwipeRight: (index) => {
       dispatch(scrollTo(index - 1));

@@ -5,9 +5,7 @@ import d3 from 'd3';
 import ReactFauxDOM from 'react-faux-dom';
 import pathMapSelector from '../../selectors/path_map';
 import mapTree from '../../lib/map_tree';
-import {
-  fetchLink,
-} from '../../actions';
+import { fetchLink } from '../../actions';
 
 class PathMap extends React.Component {
   render() {
@@ -55,7 +53,7 @@ class PathMap extends React.Component {
         return "translate(" + d.y + "," + d.x + ")";
       })
       .on("click", (d) => {
-        dispatch(fetchLink(d.name, d.parent.name));
+        dispatch(fetchLink(d.name, d.parent.name, d.index));
       });
 
     nodeEnter.append("circle")
@@ -99,7 +97,7 @@ class PathMap extends React.Component {
         if (d.target.active) {
           return 1;
         }
-        return 0.2;
+        return 0.4;
       });
 
     return svg.toReact();

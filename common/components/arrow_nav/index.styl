@@ -1,0 +1,44 @@
+.l-arrow-nav
+  display none
+
+  &.is-visible
+    display block
+
+  +mobile()
+    display none
+
+.arrow-nav__container
+  position fixed
+  top topbar-height
+  bottom 0
+  width 25%
+  cursor pointer
+  display flex
+  align-items center
+
+  &--left
+    left 0
+    justify-content flex-start
+    padding-left unit * 2
+
+  &--right
+    right 0
+    justify-content flex-end
+    padding-right unit * 2
+
+  &__link
+    sans()
+    font-weight bold
+    font-size 2rem
+    width 35px
+    height 35px
+    line-height 27px
+    background-color #fff
+    border 2px solid #666
+    color #666
+    text-align center
+
+  &:hover
+    .arrow-nav__container__link
+      color #000
+      border-color #000
