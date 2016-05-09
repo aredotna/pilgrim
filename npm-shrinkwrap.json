@@ -1,6 +1,6 @@
 {
   "name": "pilgrim",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "dependencies": {
     "abab": {
       "version": "1.0.3",
@@ -1982,9 +1982,9 @@
       "resolved": "https://registry.npmjs.org/embed-video/-/embed-video-1.2.0.tgz"
     },
     "emojis-list": {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "from": "emojis-list@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/emojis-list/-/emojis-list-1.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/emojis-list/-/emojis-list-1.0.2.tgz"
     },
     "encoding": {
       "version": "0.1.12",
@@ -4551,9 +4551,9 @@
       "resolved": "https://registry.npmjs.org/oauth-sign/-/oauth-sign-0.8.1.tgz"
     },
     "object-assign": {
-      "version": "4.0.1",
+      "version": "4.1.0",
       "from": "object-assign@>=4.0.1 <5.0.0",
-      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.0.tgz"
     },
     "object-keys": {
       "version": "1.0.9",

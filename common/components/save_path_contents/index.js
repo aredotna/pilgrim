@@ -1,6 +1,7 @@
 import { default as React, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { openSaveModal } from '../../actions';
+import AddToArena from './add_to_arena';
 
 const { APP_URL } = process.env;
 
@@ -10,7 +11,9 @@ class SavePathContentsLink extends React.Component {
 
     return (
       <div className="save-contents-link">
-        <span onClick={onLinkClick}>Save path contents</span>
+        <span onClick={onLinkClick}>
+          <AddToArena />
+        </span>
       </div>
     );
   }
