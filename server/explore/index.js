@@ -66,7 +66,7 @@ app
         const store = configureStore({
           root_link: pathData.root_link,
           links: links,
-          highlighted_link: pathdata.path[pathData.path.length - 1],
+          highlighted_link: pathData.path[pathData.path.length - 1],
           hovered_link: false,
           path: pathData.path,
           loading: false,
@@ -86,9 +86,12 @@ app
 
         // Render our boilerplate page with HTML and the initial state set
         return res.send(render(html, store.getState(), results[0].title));
+      }).catch( err => {
+        console.log('error fetching all links', err.stack);
+        next();
       });
     }).catch( err => {
-      console.log('ERROR | ', err.stack)
+      console.log('ERROR on path | ', err.stack)
       next()
     });
   })
