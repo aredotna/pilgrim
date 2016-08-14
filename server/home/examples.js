@@ -1,14 +1,26 @@
 export default [
   {
-    "url": "http://www.wired.com/2016/03/final-game-alphago-lee-sedol-big-deal-humanity/",
-    "title": "Why the Final Game Between AlphaGo and Lee Sedol Is Such a Big Deal for Humanity",
+    "url": "http://lesswrong.com/lw/jz/the_meditation_on_curiosity/",
+    "title": "The Meditation on Curiosity",
   },
   {
-    "url": "http://www.ribbonfarm.com/2016/02/11/minimum-viable-superorganism/",
-    "title": "Minimum Viable Superorganism",
+    "url": "https://en.wikipedia.org/wiki/Knowledge_management",
+    "title": "Knowledge Management",
   },
   {
-    "url": "http://www.thedailybeast.com/articles/2016/01/03/why-we-all-dream-of-being-jewel-thieves.html",
-    "title": "Why We All Dream of Being Jewel Thieves",
+    "url": "http://www.bloomberg.com/view/articles/2016-08-12/high-tech-manufacturing-isn-t-worth-much",
+    "title": "High-tech Manufacturing Isn't Worth Much",
+  },
+  {
+    "url": "http://www.ribbonfarm.com/2016/07/07/the-systems-of-the-world/",
+    "title": "The Systems of the World",
+  },
+  {
+    "url": "http://www.bloomberg.com/view/articles/2016-08-12/high-tech-manufacturing-isn-t-worth-much",
+    "title": "High-tech Manufacturing Isn't Worth Much",
+  },
+  {
+    "url": "http://www.wired.com/2016/08/open-source-won-now/",
+    "title": "Open Source Won. So, Now What?",
   },
 ]

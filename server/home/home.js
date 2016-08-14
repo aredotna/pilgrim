@@ -31,14 +31,15 @@ class Home extends React.Component {
         </div>
         <div className="home__module">
           <h1>What's <strong>Pilgrim</strong>, pilgrim?</h1>
+          <img src="https://s3.amazonaws.com/arena_images-temp/uploads%2Fr2vtrllc%2Fpilgrim-take-4.gif" />
           <div className="home__module__about">
-            <p>Pilgrim is a bookmarklet / web-crawler that aims to provide a better experience for consuming long-form text and exploring related materials on the web.</p>
-            <p>It works by extracting the content of an article, and loading any links clicked inline on the page. As you go deeper into supplemental material, your path is maintained, giving a reader a better sense of how the relevant information flows.</p>
+            <p>Pilgrim is something like a combination of a bookmarklet and web-crawler. It provides a better experience for consuming long-form text and exploring related materials on the web.</p>
+            <p>It works by extracting the content of an article, and loading any links clicked inline on the page. As you go deeper into supplemental material, your path is maintained, giving one a better sense of where the relevant information flows.</p>
             <p>Pilgrim is an <a href="http://github.com/arenahq/pilgrim">open source</a> project by <a href="https://www.are.na">Are.na</a> initiated with generous support from the <a href="http://www.knightfoundation.org/grants/201551668/">Knight Foundation Prototype Fund</a></p>
           </div>
         </div>
         <div className="home__module">
-          <h1>Example articles</h1>
+          <h1>Example paths to explore</h1>
           <ul className="home__module__examples">
             {map(examples, ({url, title}) => {
               let endcodedUrl = `${APP_URL}${encodeURIComponent(url)}`;
