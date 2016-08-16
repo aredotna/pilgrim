@@ -42,7 +42,7 @@ class Home extends React.Component {
           <h1>Example paths to explore</h1>
           <ul className="home__module__examples">
             {map(examples, ({url, title}) => {
-              let endcodedUrl = `${APP_URL}${encodeURIComponent(url)}`;
+              let endcodedUrl = `${APP_URL}/${encodeURIComponent(url)}`;
               return (
                 <li key={url}>
                   <a className="home__module__examples__title" href={endcodedUrl}>{title}</a>
