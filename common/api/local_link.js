@@ -6,7 +6,7 @@ let { APP_URL } = process.env;
 
 export function fetchLocalLink(url){
   return Q.promise((resolve, reject) => {
-    const req = request(`${APP_URL}api/${encodeURIComponent(url)}`)
+    const req = request(`${APP_URL}/api/${encodeURIComponent(url)}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err || !res.ok) {

@@ -16,7 +16,7 @@ import CurrentUser from '../common/lib/current_user'
 
 import config from '../config.js';
 
-const { PORT, NODE_ENV, APP_URL } = process.env;
+const { PORT, NODE_ENV, APP_URL, SECURE_ARENA_URL } = process.env;
 
 const app = express();
 
@@ -62,10 +62,18 @@ app
     maxage: config.SESSION_COOKIE_MAX_AGE,
   }))
   .use(arenaPassport({
-    SECURE_ARENA_URL: config.SECURE_ARENA_URL,
+    SECURE_ARENA_URL: SECURE_ARENA_URL || config.SECURE_ARENA_URL,
     APP_URL: APP_URL,
     CurrentUser: CurrentUser
   }))
+
+  // Favicon
+  .get('/favicon.ico', (req, res) => {
+    res
+      .status(200)
+      .set({ 'Content-Type': 'image/x-icon' })
+      .end();
+  })
 
   // Ensure SSL
   .use((req, res, next) => {
@@ -82,13 +90,7 @@ app
   .use(express.static(path.resolve(__dirname, '../public')))
   .use(explore)
   .use(home)
-  .use(api)
-  .get('/favicon.ico', (req, res) => {
-    res
-      .status(200)
-      .set({ 'Content-Type': 'image/x-icon' })
-      .end();
-  });
+  .use(api);
 
 const server = http.createServer(app);
 

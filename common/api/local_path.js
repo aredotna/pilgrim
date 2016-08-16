@@ -6,7 +6,7 @@ let { APP_URL } = process.env;
 export function saveLocalPath(pathData){
   return Q.promise((resolve, reject) => {
     const req = request
-      .post(`${APP_URL}api/path`)
+      .post(`${APP_URL}/api/path`)
       .set('Accept', 'application/json')
       .send(pathData)
       .end((err, res) => {

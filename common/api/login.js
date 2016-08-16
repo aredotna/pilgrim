@@ -6,7 +6,7 @@ let { APP_URL } = process.env;
 export default function login(userData){
   return Q.promise((resolve, reject) => {
     const req = request
-      .post(`${APP_URL}me/sign_in`)
+      .post(`${APP_URL}/me/sign_in`)
       .set('Accept', 'application/json')
       .set('X-Requested-With', 'XMLHttpRequest')
       .send(userData)
