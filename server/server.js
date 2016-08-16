@@ -78,6 +78,7 @@ app
   // Ensure SSL
   .use((req, res, next) => {
     const protocol = req.get('X-Forwarded-Proto') || req.protocol;
+    console.log('APP_URL', APP_URL, 'req.url', req.url);
     if(protocol !== 'https' && parse(APP_URL).protocol == 'https:'){
       res.redirect(301, APP_URL + req.url)
     }else{
