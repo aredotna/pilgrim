@@ -7,6 +7,7 @@ import home from './home';
 import api from './api';
 import compression from 'compression';
 import kue from 'kue';
+import { parse } from 'url';
 import arenaPassport from  'arena-passport';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -65,6 +66,16 @@ app
     APP_URL: APP_URL,
     CurrentUser: CurrentUser
   }))
+
+  // Ensure SSL
+  .use((req, res, next) => {
+    const protocol = req.get('X-Forwarded-Proto') || req.protocol;
+    if(protocol !== 'https' && parse(APP_URL).protocol == 'https:'){
+      res.redirect(301, APP_URL + req.url)
+    }else{
+      next();
+    }
+  })
 
   // Apps
   .use(compression())
