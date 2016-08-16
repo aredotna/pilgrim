@@ -1,5 +1,6 @@
 import http from 'http';
 import path from 'path';
+import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import explore from './explore';
@@ -49,8 +50,7 @@ app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .use(morgan('combined'))
-
-app.keys = ['foo']
+  .use(cors())
 
 app
   // Auth

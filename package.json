@@ -43,6 +43,7 @@
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.1",
     "cookie-session": "^1.2.0",
+    "cors": "^2.7.1",
     "css-loader": "^0.23.1",
     "d3": "^3.5.16",
     "embed-video": "^1.2.0",

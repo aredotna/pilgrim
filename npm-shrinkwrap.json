@@ -1737,6 +1737,11 @@
       "from": "core-util-is@>=1.0.0 <1.1.0",
       "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz"
     },
+    "cors": {
+      "version": "2.7.1",
+      "from": "cors@*",
+      "resolved": "https://registry.npmjs.org/cors/-/cors-2.7.1.tgz"
+    },
     "cryptiles": {
       "version": "2.0.5",
       "from": "cryptiles@>=2.0.0 <3.0.0",
