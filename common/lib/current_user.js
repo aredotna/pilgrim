@@ -3,6 +3,8 @@ import { pick } from 'lodash';
 import request from 'superagent';
 import config from '../../config.js';
 
+const { SECURE_ARENA_URL } = process.env;
+
 export default class CurrentUser {
   constructor(properties){
     this.properties = properties;
@@ -16,7 +18,7 @@ export default class CurrentUser {
   fetch({ data, success, error }) {
     return Q.promise((resolve, reject) => {
       const req = request
-        .get(`${config.SECURE_ARENA_URL}/accounts`)
+        .get(`${(SECURE_ARENA_URL || config.SECURE_ARENA_URL)}/accounts`)
         .set('Accept', 'application/json')
         .query(data)
         .end((err, res) => {
