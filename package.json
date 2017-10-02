@@ -88,6 +88,9 @@
     "webpack-notifier": "^1.2.1",
     "webpack-sources": "^0.1.0"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-eslint": "^4.1.6",
