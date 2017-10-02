@@ -75,6 +75,17 @@ app
       .end();
   })
 
+  // Ensure SSL
+  .use((req, res, next) => {
+    const protocol = req.get('X-Forwarded-Proto') || req.protocol;
+    if(protocol !== 'https' && parse(APP_URL).protocol == 'https:'){
+      url =
+      res.redirect(301, APP_URL + req.url.replace("//", "/"))
+    }else{
+      next();
+    }
+  })
+
   // Apps
   .use(compression())
   .use(express.static(path.resolve(__dirname, '../public')))
