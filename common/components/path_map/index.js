@@ -91,7 +91,7 @@ class PathMap extends React.Component {
 
     // Enter the links.
     link.enter().insert("path", "g")
-      .attr("class", "link")
+      .attr("class", "path-link")
       .attr("d", diagonal)
       .style("stroke-opacity", (d) => {
         if (d.target.active) {
