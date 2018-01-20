@@ -111,7 +111,10 @@
     "redbox-react": "^1.2.0",
     "redux-devtools": "^2.1.5",
     "sinon": "^1.17.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.4.0",
     "teaspoon": "^6.0.0",
+    "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.2.0",
     "webpack-notifier": "^1.2.1"
